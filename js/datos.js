@@ -1,4 +1,4 @@
-const PTIS = [
+export const PTIS = [
   {
     nombre: 'Alex Gómez Berna',
     foto: 'http://imagen.png',
@@ -261,7 +261,7 @@ const PTIS = [
   },
 ];
 
-const solicitudes = [
+export const solicitudes = [
   {
     titulo: 'Ir al baño',
     observacion: 'Necesito ayuda para llegar al baño adaptado de la planta baja.',
