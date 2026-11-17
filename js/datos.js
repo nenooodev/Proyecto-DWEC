@@ -1,5 +1,6 @@
 export const PTIS = [
   {
+    id: 1,
     nombre: 'Alex Gómez Berna',
     foto: 'http://imagen.png',
     disponibilidad: true,
@@ -52,6 +53,7 @@ export const PTIS = [
     },
   },
   {
+    id: 2,
     nombre: 'María López Serrano',
     foto: 'http://imagen.png',
     disponibilidad: true,
@@ -104,6 +106,7 @@ export const PTIS = [
     },
   },
   {
+    id: 3,
     nombre: 'Javier Ruiz Molina',
     foto: 'http://imagen.png',
     disponibilidad: false,
@@ -156,6 +159,7 @@ export const PTIS = [
     },
   },
   {
+    id: 4,
     nombre: 'Lucía Fernández Ortega',
     foto: 'http://imagen.png',
     disponibilidad: true,
@@ -208,6 +212,7 @@ export const PTIS = [
     },
   },
   {
+    id: 5,
     nombre: 'Yoel Ramírez Ramírez',
     foto: 'http://imagen.png',
     disponibilidad: false,
@@ -263,34 +268,44 @@ export const PTIS = [
 
 export const solicitudes = [
   {
+    id: 1,
     titulo: 'Ir al baño',
     observacion: 'Necesito ayuda para llegar al baño adaptado de la planta baja.',
     alumno: { foto: 'http://imagen.png', nombre: 'Marta Sánchez Ruiz' },
+    hora: '10:14',
     localizacion: 'Aula 2ºB',
   },
   {
+    id: 2,
     titulo: 'Ayuda con ropa',
     observacion: 'Necesito ayuda para cambiarme después de Educación Física.',
     alumno: { foto: 'http://imagen.png', nombre: 'Hugo Díaz Molina' },
+    hora: '10:12',
     localizacion: 'Vestuarios del gimnasio',
   },
   {
+    id: 3,
     titulo: 'Ayuda en desplazamiento',
     observacion: 'Me he quedado sin batería en la silla y no puedo moverme.',
     alumno: { foto: 'http://imagen.png', nombre: 'Nuria Romero Gil' },
+    hora: '10:08',
     localizacion: 'Pasillo de la primera planta',
   },
   {
+    id: 4,
     titulo: 'Subir a ATECA',
     observacion: 'Necesito subir en el ascensor',
     alumno: { foto: 'http://imagen.png', nombre: 'Juan Pérez Lara' },
+    hora: '9:56',
     localizacion: 'Aula 2ºDAW',
   },
   {
+    id: 5,
     titulo: 'Ir al baño',
     observacion: 'Estoy en el recreo y necesito asistencia.',
     autor: 'Lucía Torres Vidal',
     alumno: { foto: 'http://imagen.png', nombre: 'Lucía Torres Vidal' },
+    hora: '9:41',
     localizacion: 'Patio',
   },
 ];

@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#f7f8f3" />
     <title>Consultar PTIS · Aula Asistencia</title>
     <link rel="stylesheet" href="css/estilos.css" />
+    <script type="module" src="js/ui.js" defer></script>
   </head>
   <body class="pagina">
     <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -44,107 +45,7 @@
           <button class="visualmente-oculto" type="submit">Buscar</button>
         </form>
 
-        <ul class="lista-ptis">
-          <li>
-            <a class="ficha-ptis" href="detalle-ptis.html">
-              <div class="ficha-ptis__persona">
-                <span class="ficha-ptis__avatar" aria-hidden="true">AG</span>
-                <div class="ficha-ptis__datos">
-                  <p class="ficha-ptis__nombre">Alex Gómez Berna</p>
-                </div>
-              </div>
-              <div class="ficha-ptis__acciones">
-                <span class="estado estado--dentro">
-                  <img src="assets/icons/punto-verde.svg" alt="" />
-                  En el centro
-                </span>
-                <span class="ficha-ptis__flecha" aria-hidden="true">
-                  <img src="assets/icons/flecha-derecha.svg" alt="" />
-                </span>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a class="ficha-ptis" href="detalle-ptis.html">
-              <div class="ficha-ptis__persona">
-                <span class="ficha-ptis__avatar" aria-hidden="true">JA</span>
-                <div class="ficha-ptis__datos">
-                  <p class="ficha-ptis__nombre">Jose Antonio Pérez G.</p>
-                </div>
-              </div>
-              <div class="ficha-ptis__acciones">
-                <span class="estado estado--dentro">
-                  <img src="assets/icons/punto-verde.svg" alt="" />
-                  En el centro
-                </span>
-                <span class="ficha-ptis__flecha" aria-hidden="true">
-                  <img src="assets/icons/flecha-derecha.svg" alt="" />
-                </span>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a class="ficha-ptis" href="detalle-ptis.html">
-              <div class="ficha-ptis__persona">
-                <span class="ficha-ptis__avatar" aria-hidden="true">JR</span>
-                <div class="ficha-ptis__datos">
-                  <p class="ficha-ptis__nombre">Javier Ruiz Molina</p>
-                </div>
-              </div>
-              <div class="ficha-ptis__acciones">
-                <span class="estado estado--fuera">
-                  <img src="assets/icons/punto-gris.svg" alt="" />
-                  Fuera
-                </span>
-                <span class="ficha-ptis__flecha" aria-hidden="true">
-                  <img src="assets/icons/flecha-derecha.svg" alt="" />
-                </span>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a class="ficha-ptis" href="detalle-ptis.html">
-              <div class="ficha-ptis__persona">
-                <span class="ficha-ptis__avatar" aria-hidden="true">JR</span>
-                <div class="ficha-ptis__datos">
-                  <p class="ficha-ptis__nombre">Jesús Ramirez Toledo</p>
-                </div>
-              </div>
-              <div class="ficha-ptis__acciones">
-                <span class="estado estado--dentro">
-                  <img src="assets/icons/punto-verde.svg" alt="" />
-                  En el centro
-                </span>
-                <span class="ficha-ptis__flecha" aria-hidden="true">
-                  <img src="assets/icons/flecha-derecha.svg" alt="" />
-                </span>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a class="ficha-ptis" href="detalle-ptis.html">
-              <div class="ficha-ptis__persona">
-                <span class="ficha-ptis__avatar" aria-hidden="true">ER</span>
-                <div class="ficha-ptis__datos">
-                  <p class="ficha-ptis__nombre">Elena Rodríguez Martínez</p>
-                </div>
-              </div>
-              <div class="ficha-ptis__acciones">
-                <span class="estado estado--fuera">
-                  <img src="assets/icons/punto-gris.svg" alt="" />
-                  Fuera
-                </span>
-                <span class="ficha-ptis__flecha" aria-hidden="true">
-                  <img src="assets/icons/flecha-derecha.svg" alt="" />
-                </span>
-              </div>
-            </a>
-          </li>
-        </ul>
+        <ul class="lista-ptis"></ul>
       </main>
 
       <footer class="app__footer">
