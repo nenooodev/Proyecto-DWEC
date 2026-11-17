@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Detalle del PTIS Alex Gómez Berna, con su disponibilidad y el horario del día."
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Detalle de PTIS · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <header class="barra-superior">
+        <a
+          class="barra-superior__volver"
+          href="ptis.html"
+          aria-label="Volver al listado de PTIS"
+        >
+          <img src="assets/icons/volver.svg" alt="" />
+        </a>
+        <h1 class="barra-superior__titulo">Detalle de PTIS</h1>
+      </header>
+
+      <main class="app__main detalle-ptis" id="contenido">
+        <section class="detalle-ptis__perfil" aria-labelledby="nombre-ptis">
+          <div class="detalle-ptis__identidad">
+            <span class="detalle-ptis__avatar" aria-hidden="true">AG</span>
+            <div class="detalle-ptis__datos">
+              <h2 class="detalle-ptis__nombre" id="nombre-ptis">Alex Gómez Berna</h2>
+              <p class="detalle-ptis__especialidad">PTIS · Atención motórica</p>
+            </div>
+          </div>
+          <div class="detalle-ptis__disponibilidad">
+            <span class="estado estado--dentro">
+              <img src="assets/icons/punto-verde.svg" alt="" />
+              En el centro
+            </span>
+            <p class="detalle-ptis__jornada">L–V · 8:00 – 14:30</p>
+          </div>
+        </section>
+
+        <section class="detalle-ptis__horario" aria-labelledby="titulo-horario">
+          <div class="horario">
+            <div class="horario__cabecera">
+              <h2 class="horario__titulo" id="titulo-horario">Horario</h2>
+              <span class="horario__chip">
+                <img src="assets/icons/punto-verde-grande.svg" alt="" />
+                Hoy
+              </span>
+            </div>
+
+            <p class="horario__fecha">
+              <time datetime="2026-11-17">Martes, 17 de noviembre</time>
+            </p>
+
+            <ol class="semana" aria-label="Semana del 16 al 20 de noviembre">
+              <li class="semana__dia">
+                <span class="semana__letra" aria-hidden="true">L</span>
+                <span class="visualmente-oculto">Lunes 16</span>
+              </li>
+              <li class="semana__dia semana__dia--activo" aria-current="date">
+                <span class="semana__letra" aria-hidden="true">M</span>
+                <span class="visualmente-oculto">Martes 17, hoy</span>
+              </li>
+              <li class="semana__dia">
+                <span class="semana__letra" aria-hidden="true">X</span>
+                <span class="visualmente-oculto">Miércoles 18</span>
+              </li>
+              <li class="semana__dia">
+                <span class="semana__letra" aria-hidden="true">J</span>
+                <span class="visualmente-oculto">Jueves 19</span>
+              </li>
+              <li class="semana__dia">
+                <span class="semana__letra" aria-hidden="true">V</span>
+                <span class="visualmente-oculto">Viernes 20</span>
+              </li>
+            </ol>
+
+            <ol class="tramos" aria-label="Tramos del día">
+              <li class="tramo">
+                <div class="tramo__hora">
+                  <time class="tramo__hora-inicio" datetime="08:00">8:00</time>
+                </div>
+                <div class="tramo__actividad">
+                  <p class="tramo__lugar">Aula 1ºA</p>
+                  <p class="tramo__descripcion">Apoyo en el aula</p>
+                </div>
+              </li>
+
+              <li class="tramo">
+                <div class="tramo__hora">
+                  <time class="tramo__hora-inicio" datetime="09:00">9:00</time>
+                </div>
+                <div class="tramo__actividad">
+                  <p class="tramo__lugar">Aula 1ºB</p>
+                  <p class="tramo__descripcion">Apoyo en el aula</p>
+                </div>
+              </li>
+
+              <li class="tramo tramo--actual" aria-current="time">
+                <div class="tramo__hora">
+                  <time class="tramo__hora-inicio" datetime="10:00">10:00</time>
+                </div>
+                <div class="tramo__actividad">
+                  <p class="tramo__lugar">
+                    Aula PT
+                    <span class="tramo__ahora">Ahora</span>
+                  </p>
+                  <p class="tramo__descripcion">Atención individual · Marta</p>
+                </div>
+              </li>
+
+              <li class="tramo">
+                <div class="tramo__hora">
+                  <time class="tramo__hora-inicio" datetime="11:30">11:30</time>
+                </div>
+                <div class="tramo__actividad">
+                  <p class="tramo__lugar">ATECA</p>
+                  <p class="tramo__descripcion">Rutina · Juan Pérez Lara</p>
+                </div>
+              </li>
+
+              <li class="tramo">
+                <div class="tramo__hora">
+                  <time class="tramo__hora-inicio" datetime="12:30">12:30</time>
+                </div>
+                <div class="tramo__actividad">
+                  <p class="tramo__lugar">Biblioteca</p>
+                  <p class="tramo__descripcion">Apoyo a la lectura</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app__footer">
+        <nav class="nav" aria-label="Navegación principal">
+          <ul class="nav__lista">
+            <li class="nav__item">
+              <a class="nav__enlace" href="index.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-inicio-inactivo.svg" alt="" />
+                </span>
+                <span class="nav__texto">Inicio</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a
+                class="nav__enlace nav__enlace--activo"
+                href="ptis.html"
+                aria-current="page"
+              >
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-ptis-activo.svg" alt="" />
+                </span>
+                <span class="nav__texto">PTIS</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="ayuda.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-ayuda.svg" alt="" />
+                </span>
+                <span class="nav__texto">Ayuda</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="perfil.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-perfil.svg" alt="" />
+                </span>
+                <span class="nav__texto">Perfil</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

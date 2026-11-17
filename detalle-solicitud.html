@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Detalle de la solicitud urgente de Marta Sánchez Ruiz: motivo, observación, ubicación y acciones."
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Detalle de solicitud · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app app--detalle">
+      <main class="app__main detalle-solicitud" id="contenido">
+        <div class="detalle-solicitud__barra">
+          <a
+            class="barra-superior__volver"
+            href="solicitudes.html"
+            aria-label="Volver a las solicitudes recibidas"
+          >
+            <img src="assets/icons/volver.svg" alt="" />
+          </a>
+        </div>
+
+        <section class="detalle-solicitud__perfil" aria-labelledby="nombre-solicitante">
+          <span class="detalle-solicitud__avatar" aria-hidden="true">MS</span>
+          <div class="detalle-solicitud__datos">
+            <h1 class="detalle-solicitud__nombre" id="nombre-solicitante">
+              Marta Sánchez Ruiz
+            </h1>
+            <p class="detalle-solicitud__curso">2º DAW · Aula 2ºB</p>
+          </div>
+        </section>
+
+        <p class="detalle-solicitud__recibida">
+          <img src="assets/icons/reloj.svg" alt="" />
+          <span>
+            Recibida a las <time datetime="10:24">10:24</time> · hace 2 min
+          </span>
+        </p>
+
+        <dl class="detalle-solicitud__tarjetas">
+          <div class="tarjeta-dato">
+            <dt class="tarjeta-dato__etiqueta">Motivo</dt>
+            <dd class="tarjeta-dato__motivo">
+              <span class="tarjeta-dato__icono" aria-hidden="true">
+                <img src="assets/icons/motivo.svg" alt="" />
+              </span>
+              <div class="tarjeta-dato__textos">
+                <p class="tarjeta-dato__titulo">Ir al baño</p>
+                <p class="tarjeta-dato__descripcion">Requiere acompañamiento</p>
+              </div>
+            </dd>
+          </div>
+
+          <div class="tarjeta-dato">
+            <dt class="tarjeta-dato__etiqueta">Observación</dt>
+            <dd class="tarjeta-dato__parrafo">
+              Necesito ayuda para llegar al baño adaptado de la planta baja. Voy en silla
+              de ruedas.
+            </dd>
+          </div>
+
+          <div class="tarjeta-dato">
+            <dt class="tarjeta-dato__etiqueta">Ubicación</dt>
+            <dd>
+              <p class="tarjeta-dato__lugar">
+                <img src="assets/icons/ubicacion.svg" alt="" />
+                Aula 2ºB · Planta baja
+              </p>
+
+              <div
+                class="mapa"
+                role="img"
+                aria-label="Plano de la planta baja con el aula 2ºB señalada"
+              >
+                <span class="mapa__estancia mapa__estancia--1a">1ºA</span>
+                <span class="mapa__estancia mapa__estancia--1b">1ºB</span>
+                <span class="mapa__estancia mapa__estancia--2b" aria-hidden="true"></span>
+                <span class="mapa__nombre mapa__nombre--2b">2ºB</span>
+                <span class="mapa__estancia mapa__estancia--biblioteca">Biblioteca</span>
+                <span class="mapa__estancia mapa__estancia--aula-pt">Aula PT</span>
+                <img class="mapa__pin-fondo" src="assets/icons/pin-fondo.svg" alt="" />
+                <img class="mapa__pin" src="assets/icons/pin.svg" alt="" />
+              </div>
+            </dd>
+          </div>
+        </dl>
+
+        <div
+          class="acciones-detalle"
+          role="group"
+          aria-label="Acciones de la solicitud"
+        >
+          <button class="acciones-detalle__boton" type="button">
+            Avisar que voy · Llamar
+          </button>
+          <button
+            class="acciones-detalle__boton acciones-detalle__boton--primario"
+            type="button"
+          >
+            Marcar como resuelta
+          </button>
+        </div>
+
+        <div class="indicador-inicio" aria-hidden="true"></div>
+      </main>
+    </div>
+  </body>
+</html>

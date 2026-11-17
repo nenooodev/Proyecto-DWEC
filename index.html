@@ -3,7 +3,101 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta
+      name="description"
+      content="Inicio para el alumnado: solicita asistencia, consulta a los PTIS del centro o emite una alerta urgente."
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Inicio · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
   </head>
-  <body></body>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <header class="cabecera-perfil">
+        <span class="cabecera-perfil__avatar" aria-hidden="true">MS</span>
+        <div class="cabecera-perfil__info">
+          <p class="cabecera-perfil__nombre">Hola, Marta</p>
+          <p class="cabecera-perfil__rol">Alumna</p>
+        </div>
+      </header>
+
+      <main class="app__main inicio" id="contenido">
+        <h1 class="inicio__titulo">¿En qué podemos ayudarte hoy?</h1>
+
+        <nav class="acciones acciones--inicio" aria-label="Acciones principales">
+          <a
+            class="acceso acceso--principal acceso--ancho"
+            href="solicitar-asistencia.html"
+          >
+            <span class="acceso__icono" aria-hidden="true">
+              <img src="assets/icons/asistencia.svg" alt="" />
+            </span>
+            <div class="acceso__contenido">
+              <p class="acceso__titulo">Solicitar asistencia</p>
+              <p class="acceso__texto">Te acompañamos en el centro</p>
+            </div>
+          </a>
+
+          <a class="acceso acceso--consulta" href="ptis.html">
+            <span class="acceso__icono" aria-hidden="true">
+              <img src="assets/icons/usuarios.svg" alt="" />
+            </span>
+            <p class="acceso__titulo">Consultar PTIS</p>
+          </a>
+
+          <a class="acceso acceso--urgente" href="alerta-urgente.html">
+            <span class="acceso__icono" aria-hidden="true">
+              <img src="assets/icons/alerta.svg" alt="" />
+            </span>
+            <p class="acceso__titulo">Asistencia urgente</p>
+          </a>
+        </nav>
+      </main>
+
+      <footer class="app__footer">
+        <nav class="nav" aria-label="Navegación principal">
+          <ul class="nav__lista">
+            <li class="nav__item">
+              <a
+                class="nav__enlace nav__enlace--activo"
+                href="index.html"
+                aria-current="page"
+              >
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-inicio.svg" alt="" />
+                </span>
+                <span class="nav__texto">Inicio</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="ptis.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-ptis.svg" alt="" />
+                </span>
+                <span class="nav__texto">PTIS</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="ayuda.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-ayuda.svg" alt="" />
+                </span>
+                <span class="nav__texto">Ayuda</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="perfil.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-perfil.svg" alt="" />
+                </span>
+                <span class="nav__texto">Perfil</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
 </html>

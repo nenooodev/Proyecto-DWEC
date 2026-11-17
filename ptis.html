@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Listado de profesionales PTIS del IES Rafael Alberti con su disponibilidad en el centro."
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Consultar PTIS · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <header class="barra-superior">
+        <a class="barra-superior__volver" href="index.html" aria-label="Volver al inicio">
+          <img src="assets/icons/volver.svg" alt="" />
+        </a>
+        <h1 class="barra-superior__titulo">PTIS en el centro</h1>
+      </header>
+
+      <main class="app__main" id="contenido">
+        <section class="centro" aria-labelledby="nombre-centro">
+          <h2 class="centro__nombre" id="nombre-centro">IES Rafael Alberti</h2>
+          <p class="centro__resumen">5 profesionales · 3 en el centro</p>
+        </section>
+
+        <form class="buscador" role="search" action="ptis.html" method="get">
+          <label class="visualmente-oculto" for="buscador-ptis">
+            Buscar PTIS por nombre
+          </label>
+          <img class="buscador__icono" src="assets/icons/buscar.svg" alt="" />
+          <input
+            class="buscador__campo"
+            type="search"
+            id="buscador-ptis"
+            name="q"
+            placeholder="Buscar por nombre"
+            autocomplete="off"
+          />
+          <button class="visualmente-oculto" type="submit">Buscar</button>
+        </form>
+
+        <ul class="lista-ptis">
+          <li>
+            <a class="ficha-ptis" href="detalle-ptis.html">
+              <div class="ficha-ptis__persona">
+                <span class="ficha-ptis__avatar" aria-hidden="true">AG</span>
+                <div class="ficha-ptis__datos">
+                  <p class="ficha-ptis__nombre">Alex Gómez Berna</p>
+                </div>
+              </div>
+              <div class="ficha-ptis__acciones">
+                <span class="estado estado--dentro">
+                  <img src="assets/icons/punto-verde.svg" alt="" />
+                  En el centro
+                </span>
+                <span class="ficha-ptis__flecha" aria-hidden="true">
+                  <img src="assets/icons/flecha-derecha.svg" alt="" />
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="ficha-ptis" href="detalle-ptis.html">
+              <div class="ficha-ptis__persona">
+                <span class="ficha-ptis__avatar" aria-hidden="true">JA</span>
+                <div class="ficha-ptis__datos">
+                  <p class="ficha-ptis__nombre">Jose Antonio Pérez G.</p>
+                </div>
+              </div>
+              <div class="ficha-ptis__acciones">
+                <span class="estado estado--dentro">
+                  <img src="assets/icons/punto-verde.svg" alt="" />
+                  En el centro
+                </span>
+                <span class="ficha-ptis__flecha" aria-hidden="true">
+                  <img src="assets/icons/flecha-derecha.svg" alt="" />
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="ficha-ptis" href="detalle-ptis.html">
+              <div class="ficha-ptis__persona">
+                <span class="ficha-ptis__avatar" aria-hidden="true">JR</span>
+                <div class="ficha-ptis__datos">
+                  <p class="ficha-ptis__nombre">Javier Ruiz Molina</p>
+                </div>
+              </div>
+              <div class="ficha-ptis__acciones">
+                <span class="estado estado--fuera">
+                  <img src="assets/icons/punto-gris.svg" alt="" />
+                  Fuera
+                </span>
+                <span class="ficha-ptis__flecha" aria-hidden="true">
+                  <img src="assets/icons/flecha-derecha.svg" alt="" />
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="ficha-ptis" href="detalle-ptis.html">
+              <div class="ficha-ptis__persona">
+                <span class="ficha-ptis__avatar" aria-hidden="true">JR</span>
+                <div class="ficha-ptis__datos">
+                  <p class="ficha-ptis__nombre">Jesús Ramirez Toledo</p>
+                </div>
+              </div>
+              <div class="ficha-ptis__acciones">
+                <span class="estado estado--dentro">
+                  <img src="assets/icons/punto-verde.svg" alt="" />
+                  En el centro
+                </span>
+                <span class="ficha-ptis__flecha" aria-hidden="true">
+                  <img src="assets/icons/flecha-derecha.svg" alt="" />
+                </span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a class="ficha-ptis" href="detalle-ptis.html">
+              <div class="ficha-ptis__persona">
+                <span class="ficha-ptis__avatar" aria-hidden="true">ER</span>
+                <div class="ficha-ptis__datos">
+                  <p class="ficha-ptis__nombre">Elena Rodríguez Martínez</p>
+                </div>
+              </div>
+              <div class="ficha-ptis__acciones">
+                <span class="estado estado--fuera">
+                  <img src="assets/icons/punto-gris.svg" alt="" />
+                  Fuera
+                </span>
+                <span class="ficha-ptis__flecha" aria-hidden="true">
+                  <img src="assets/icons/flecha-derecha.svg" alt="" />
+                </span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </main>
+
+      <footer class="app__footer">
+        <nav class="nav" aria-label="Navegación principal">
+          <ul class="nav__lista">
+            <li class="nav__item">
+              <a class="nav__enlace" href="index.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-inicio-inactivo.svg" alt="" />
+                </span>
+                <span class="nav__texto">Inicio</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a
+                class="nav__enlace nav__enlace--activo"
+                href="ptis.html"
+                aria-current="page"
+              >
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-ptis-activo.svg" alt="" />
+                </span>
+                <span class="nav__texto">PTIS</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="ayuda.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-ayuda.svg" alt="" />
+                </span>
+                <span class="nav__texto">Ayuda</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="perfil.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-perfil.svg" alt="" />
+                </span>
+                <span class="nav__texto">Perfil</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

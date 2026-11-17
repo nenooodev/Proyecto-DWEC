@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Inicio del PTIS: revisa tu jornada, las solicitudes recibidas, tu horario y tus rutinas."
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Inicio PTIS · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <header>
+        <div class="cabecera-perfil cabecera-perfil--ptis">
+          <span class="cabecera-perfil__avatar" aria-hidden="true">AG</span>
+          <div class="cabecera-perfil__info">
+            <p class="cabecera-perfil__nombre">Hola, Alex</p>
+            <p class="cabecera-perfil__rol">PTIS</p>
+          </div>
+        </div>
+
+        <a class="aviso-urgente" href="detalle-solicitud.html">
+          <img class="aviso-urgente__icono" src="assets/icons/alerta-blanca.svg" alt="" />
+          <span class="aviso-urgente__mensaje">
+            <span class="aviso-urgente__titulo">1 solicitud urgente</span>
+            <span class="aviso-urgente__detalle">Marta</span>
+          </span>
+        </a>
+      </header>
+
+      <main class="app__main inicio-ptis" id="contenido">
+        <div class="inicio-ptis__grupo">
+          <h1 class="inicio-ptis__titulo">Tu día en el centro</h1>
+
+          <button
+            class="dia"
+            type="button"
+            aria-label="Check-in activo. Pulsa para hacer check-out"
+          >
+            <span class="dia__estado">
+              <img src="assets/icons/punto-verde-grande.svg" alt="" />
+              Check-in activo
+            </span>
+            <span class="dia__accion">Check-out</span>
+          </button>
+        </div>
+
+        <nav class="acciones acciones--ptis" aria-label="Acciones del PTIS">
+          <a class="acceso acceso--principal acceso--ancho" href="solicitudes.html">
+            <span class="acceso__icono" aria-hidden="true">
+              <img src="assets/icons/solicitudes.svg" alt="" />
+            </span>
+            <p class="acceso__titulo">Solicitudes recibidas</p>
+            <span class="acceso__contador">
+              3<span class="visualmente-oculto"> pendientes</span>
+            </span>
+          </a>
+
+          <a class="acceso acceso--opcion" href="horario.html">
+            <span class="acceso__icono" aria-hidden="true">
+              <img src="assets/icons/horario.svg" alt="" />
+            </span>
+            <p class="acceso__titulo">Horario</p>
+          </a>
+
+          <a class="acceso acceso--opcion" href="rutinas.html">
+            <span class="acceso__icono" aria-hidden="true">
+              <img src="assets/icons/rutinas.svg" alt="" />
+            </span>
+            <p class="acceso__titulo">Rutinas</p>
+          </a>
+        </nav>
+      </main>
+
+      <footer class="app__footer">
+        <nav class="nav" aria-label="Navegación principal">
+          <ul class="nav__lista">
+            <li class="nav__item">
+              <a
+                class="nav__enlace nav__enlace--activo"
+                href="inicio-ptis.html"
+                aria-current="page"
+              >
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-inicio.svg" alt="" />
+                </span>
+                <span class="nav__texto">Inicio</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="solicitudes.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-solicitudes.svg" alt="" />
+                </span>
+                <span class="nav__texto">Solicitudes</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="horario.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-horario.svg" alt="" />
+                </span>
+                <span class="nav__texto">Horario</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="perfil-ptis.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-perfil.svg" alt="" />
+                </span>
+                <span class="nav__texto">Perfil</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

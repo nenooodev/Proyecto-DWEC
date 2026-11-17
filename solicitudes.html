@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Solicitudes de asistencia recibidas por el PTIS, con las urgentes destacadas en primer lugar."
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Solicitudes recibidas · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <header class="barra-superior">
+        <a
+          class="barra-superior__volver"
+          href="inicio-ptis.html"
+          aria-label="Volver al inicio del PTIS"
+        >
+          <img src="assets/icons/volver.svg" alt="" />
+        </a>
+        <h1 class="barra-superior__titulo">Solicitudes</h1>
+      </header>
+
+      <main class="app__main solicitudes" id="contenido">
+        <header class="solicitudes__resumen">
+          <h2 class="solicitudes__titulo">4 solicitudes pendientes</h2>
+          <p class="solicitudes__subtitulo">1 solicitud urgente</p>
+        </header>
+
+        <a class="solicitud-urgente" href="detalle-solicitud.html">
+          <div class="solicitud-urgente__cabecera">
+            <span class="solicitud-urgente__etiqueta">
+              <img src="assets/icons/punto-urgente.svg" alt="" />
+              Urgente
+            </span>
+            <span class="solicitud-urgente__tiempo">hace 2 min</span>
+          </div>
+          <div class="solicitud-urgente__persona">
+            <span class="solicitud-urgente__avatar" aria-hidden="true">MS</span>
+            <p class="solicitud-urgente__nombre">Marta Sánchez Ruiz</p>
+          </div>
+        </a>
+
+        <section class="solicitudes__otras" aria-labelledby="titulo-otras-solicitudes">
+          <h2 class="solicitudes__etiqueta" id="titulo-otras-solicitudes">
+            Otras solicitudes
+          </h2>
+
+          <ul class="solicitudes__lista">
+            <li>
+              <a class="ficha-solicitud" href="detalle-solicitud.html">
+                <span class="ficha-solicitud__avatar" aria-hidden="true">HD</span>
+                <div class="ficha-solicitud__detalle">
+                  <p class="ficha-solicitud__nombre">Hugo Díaz Molina</p>
+                  <p class="ficha-solicitud__motivo">Ayuda con ropa</p>
+                  <p class="ficha-solicitud__meta">
+                    <img src="assets/icons/reloj-tenue.svg" alt="" />
+                    <time datetime="10:12">10:12</time>
+                    <img src="assets/icons/separador.svg" alt="" />
+                    Vestuarios
+                  </p>
+                </div>
+              </a>
+            </li>
+
+            <li>
+              <a class="ficha-solicitud" href="detalle-solicitud.html">
+                <span class="ficha-solicitud__avatar" aria-hidden="true">NR</span>
+                <div class="ficha-solicitud__detalle">
+                  <p class="ficha-solicitud__nombre">Nuria Romero Gil</p>
+                  <p class="ficha-solicitud__motivo">Desplazamiento</p>
+                  <p class="ficha-solicitud__meta">
+                    <img src="assets/icons/reloj-tenue.svg" alt="" />
+                    <time datetime="10:05">10:05</time>
+                    <img src="assets/icons/separador.svg" alt="" />
+                    Pasillo 1ª planta
+                  </p>
+                </div>
+              </a>
+            </li>
+
+            <li>
+              <a class="ficha-solicitud" href="detalle-solicitud.html">
+                <span class="ficha-solicitud__avatar" aria-hidden="true">JP</span>
+                <div class="ficha-solicitud__detalle">
+                  <p class="ficha-solicitud__nombre">Juan Pérez Lara</p>
+                  <p class="ficha-solicitud__motivo">Subir a ATECA</p>
+                  <p class="ficha-solicitud__meta">
+                    <img src="assets/icons/reloj-tenue.svg" alt="" />
+                    <time datetime="09:58">9:58</time>
+                    <img src="assets/icons/separador.svg" alt="" />
+                    Aula 2ºDAW
+                  </p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="app__footer">
+        <nav class="nav" aria-label="Navegación principal">
+          <ul class="nav__lista">
+            <li class="nav__item">
+              <a class="nav__enlace" href="inicio-ptis.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-inicio-inactivo.svg" alt="" />
+                </span>
+                <span class="nav__texto">Inicio</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a
+                class="nav__enlace nav__enlace--activo"
+                href="solicitudes.html"
+                aria-current="page"
+              >
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/solicitudes.svg" alt="" />
+                </span>
+                <span class="nav__texto">Solicitudes</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="horario.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-horario.svg" alt="" />
+                </span>
+                <span class="nav__texto">Horario</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__enlace" href="perfil-ptis.html">
+                <span class="nav__caja-icono">
+                  <img src="assets/icons/nav-perfil.svg" alt="" />
+                </span>
+                <span class="nav__texto">Perfil</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

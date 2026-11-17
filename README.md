@@ -1,5 +1,22 @@
 # Proyecto-DWEC
 
+## Prototipo HTML/CSS
+
+Pantallas del diseño de Figma implementadas con HTML semántico, CSS y metodología BEM:
+
+| Flujo         | Pantalla              | Archivo                 |
+| ------------- | --------------------- | ----------------------- |
+| Alumnado      | 02 · Inicio           | `index.html`            |
+| Alumnado      | 03 · Consultar PTIS   | `ptis.html`             |
+| Alumnado      | 14 · Detalle de PTIS  | `detalle-ptis.html`     |
+| PTIS          | 08 · Inicio           | `inicio-ptis.html`      |
+| PTIS          | 09 · Solicitudes      | `solicitudes.html`      |
+| PTIS          | 10 · Detalle solicitud | `detalle-solicitud.html` |
+
+Las pantallas restantes enlazadas desde la navegación (`ayuda.html`, `perfil.html`, `horario.html`, `rutinas.html`, `perfil-ptis.html`, `solicitar-asistencia.html` y `alerta-urgente.html`) son páginas provisionales para que todos los enlaces funcionen.
+
+La hoja de estilos común está en `css/estilos.css` y los iconos exportados de Figma en `assets/icons/`.
+
 ## Backlog
 
 - Inicialmente 2 roles: PTIS y alumno ( podría valorar incluir profesor a futuro)
