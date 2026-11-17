@@ -1119,6 +1119,7 @@ input:focus-visible {
   border: 1px solid var(--color-borde);
   border-radius: 16px;
   background: var(--color-superficie);
+  cursor: pointer;
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease;
@@ -1456,7 +1457,106 @@ input:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   17. Páginas pendientes de implementar (bloque pendiente)
+   17. Modal de confirmación de solicitud (bloque modal)
+   -------------------------------------------------------------------------- */
+.pagina--modal {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal__fondo {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 46, 35, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.modal__caja {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 300px;
+  padding: 24px;
+  border: 1px solid var(--color-borde);
+  border-radius: 24px;
+  background: var(--color-lienzo);
+  box-shadow: 0 24px 48px rgba(11, 46, 35, 0.24);
+  animation: modal-aparecer 0.18s ease-out;
+}
+
+@keyframes modal-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal__aviso {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+}
+
+.modal__acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.modal__boton {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 1px solid var(--color-borde-fuerte);
+  border-radius: 14px;
+  background: var(--color-superficie);
+  color: var(--color-tinta);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.modal__boton:hover {
+  background: var(--color-niebla);
+}
+
+.modal__boton--primario {
+  border-color: var(--color-verde);
+  background: var(--color-verde);
+  color: var(--color-blanco);
+}
+
+.modal__boton--primario:hover {
+  border-color: var(--color-verde-oscuro);
+  background: var(--color-verde-oscuro);
+}
+
+/* --------------------------------------------------------------------------
+   18. Páginas pendientes de implementar (bloque pendiente)
    -------------------------------------------------------------------------- */
 .pendiente {
   display: flex;
@@ -1502,11 +1602,15 @@ input:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   18. Adaptación a pantallas estrechas
+   19. Adaptación a pantallas estrechas
    -------------------------------------------------------------------------- */
 @media (max-width: 430px) {
   .pagina {
     padding: 0;
+  }
+
+  .modal {
+    padding: 16px;
   }
 
   .app {
@@ -1521,6 +1625,7 @@ input:focus-visible {
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }

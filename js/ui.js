@@ -136,6 +136,19 @@ const cargarPtis = () => {
 
   lista.append(fragmento);
 };
-
+const crearModal = (PTIS) => {
+  const modal = document.createElement('article');
+  const title = document.createElement('h1');
+  title.textContent = `Horario de ${PTIS.nombre}`;
+  const horario = document.createElement('table');
+  const horarioBody = document.createElement('tbody');
+  let i = 0;
+  const dias = Object.keys(PTIS.horario);
+  while (i < dias.length) {}
+};
+const mostrarHorario = (e) => {
+  const targetObj = PTIS.find((it) => it.id === e.target.dataset.id);
+  crearModal(targetObj);
+};
 cargarSolicitudes();
 cargarPtis();
