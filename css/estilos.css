@@ -1479,6 +1479,7 @@ input:focus-visible {
   background: rgba(11, 46, 35, 0.55);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
+  animation: modal-fondo-aparecer 0.18s ease-out;
 }
 
 .modal__caja {
@@ -1505,6 +1506,16 @@ input:focus-visible {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes modal-fondo-aparecer {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
@@ -1555,8 +1566,152 @@ input:focus-visible {
   background: var(--color-verde-oscuro);
 }
 
+/* Variante del modal para el horario semanal */
+.modal__caja--horario {
+  max-width: 342px;
+  max-height: 100%;
+  gap: 16px;
+  padding: 16px;
+}
+
+.modal__cabecera {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.modal__titulo {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  overflow-wrap: anywhere;
+}
+
+.modal__cerrar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-borde);
+  border-radius: 16px;
+  background: var(--color-superficie);
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.modal__cerrar:hover {
+  border-color: var(--color-borde-fuerte);
+  background: var(--color-niebla);
+}
+
+.modal__icono-cerrar {
+  width: 12px;
+  height: 12px;
+}
+
+.modal__cuerpo {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid var(--color-borde);
+  border-radius: 14px;
+  background: var(--color-superficie);
+  overscroll-behavior: contain;
+  scrollbar-color: var(--color-borde-fuerte) var(--color-niebla);
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal__cuerpo::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.modal__cuerpo::-webkit-scrollbar-track {
+  background: var(--color-niebla);
+}
+
+.modal__cuerpo::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--color-borde-fuerte);
+}
+
 /* --------------------------------------------------------------------------
-   18. Páginas pendientes de implementar (bloque pendiente)
+   18. Tabla de horario semanal (bloque tabla-horario)
+   -------------------------------------------------------------------------- */
+.tabla-horario {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--color-tinta);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.tabla-horario__dia,
+.tabla-horario__esquina {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-borde);
+  background: var(--color-menta);
+  color: var(--color-verde-oscuro);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tabla-horario__esquina {
+  left: 0;
+  z-index: 3;
+  border-right: 1px solid var(--color-borde);
+  background: var(--color-menta-fuerte);
+}
+
+.tabla-horario__dia--hoy {
+  background: var(--color-verde);
+  color: var(--color-blanco);
+}
+
+.tabla-horario__hora {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  padding: 9px 12px;
+  border-right: 1px solid var(--color-borde);
+  border-bottom: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+  color: var(--color-tinta-suave);
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla-horario__celda {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--color-borde);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tabla-horario__cuerpo .tabla-horario__fila:last-child .tabla-horario__hora,
+.tabla-horario__cuerpo .tabla-horario__fila:last-child .tabla-horario__celda {
+  border-bottom: 0;
+}
+
+.tabla-horario__fila:hover .tabla-horario__hora,
+.tabla-horario__fila:hover .tabla-horario__celda {
+  background: var(--color-niebla);
+}
+
+/* --------------------------------------------------------------------------
+   19. Páginas pendientes de implementar (bloque pendiente)
    -------------------------------------------------------------------------- */
 .pendiente {
   display: flex;
@@ -1602,7 +1757,7 @@ input:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   19. Adaptación a pantallas estrechas
+   20. Adaptación a pantallas estrechas
    -------------------------------------------------------------------------- */
 @media (max-width: 430px) {
   .pagina {

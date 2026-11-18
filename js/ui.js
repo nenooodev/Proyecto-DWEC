@@ -137,59 +137,179 @@ const cargarPtis = () => {
   lista.append(fragmento);
 };
 
+const DIAS_SEMANA = [
+  'Domingo',
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes',
+  'Sábado',
+];
+
+const ID_TITULO_HORARIO = 'titulo-horario';
+
+const obtenerDiaActual = () => DIAS_SEMANA[new Date().getDay()];
+
 const crearHorario = (ptis) => {
   const horario = document.createElement('table');
+  horario.className = 'tabla-horario';
+
+  const leyenda = document.createElement('caption');
+  leyenda.className = 'visualmente-oculto';
+  leyenda.textContent = `Horario semanal de ${ptis.nombre}`;
+  horario.append(leyenda);
+
   const horarioHead = document.createElement('thead');
+  horarioHead.className = 'tabla-horario__cabecera';
+
   const horarioBody = document.createElement('tbody');
+  horarioBody.className = 'tabla-horario__cuerpo';
+
   const dias = Object.keys(ptis.horario);
+  const diaActual = obtenerDiaActual();
   const filaHead = document.createElement('tr');
+  filaHead.className = 'tabla-horario__fila';
+
   const esquina = document.createElement('th');
+  esquina.className = 'tabla-horario__esquina';
+  esquina.scope = 'col';
   filaHead.append(esquina);
 
   dias.forEach((dia) => {
     const celdaDia = document.createElement('th');
+    celdaDia.className = 'tabla-horario__dia';
+    celdaDia.scope = 'col';
     celdaDia.textContent = dia;
+
+    if (dia === diaActual) {
+      celdaDia.classList.add('tabla-horario__dia--hoy');
+
+      const hoy = document.createElement('span');
+      hoy.className = 'visualmente-oculto';
+      hoy.textContent = ' (hoy)';
+      celdaDia.append(hoy);
+    }
+
     filaHead.append(celdaDia);
   });
+
   horarioHead.append(filaHead);
   horario.append(horarioHead);
 
   const horas = Object.keys(ptis.horario[dias[0]]);
   horas.forEach((hora) => {
     const fila = document.createElement('tr');
-    const celdaHora = document.createElement('td');
+    fila.className = 'tabla-horario__fila';
+
+    const celdaHora = document.createElement('th');
+    celdaHora.className = 'tabla-horario__hora';
+    celdaHora.scope = 'row';
     celdaHora.textContent = hora;
     fila.append(celdaHora);
+
     dias.forEach((dia) => {
       const celda = document.createElement('td');
+      celda.className = 'tabla-horario__celda';
       celda.textContent = ptis.horario[dia][hora];
       fila.append(celda);
     });
+
     horarioBody.append(fila);
   });
+
   horario.append(horarioBody);
   return horario;
+};
+
+const crearBotonCerrar = () => {
+  const boton = document.createElement('button');
+  boton.className = 'modal__cerrar';
+  boton.type = 'button';
+  boton.dataset.accion = 'cerrar';
+  boton.setAttribute('aria-label', 'Cerrar horario');
+
+  const icono = document.createElement('img');
+  icono.className = 'modal__icono-cerrar';
+  icono.src = 'assets/icons/cerrar.svg';
+  icono.alt = '';
+
+  boton.append(icono);
+
+  return boton;
 };
 
 const crearModal = (ptis) => {
   const modal = document.createElement('article');
   modal.className = 'modal';
-  const titulo = document.createElement('h1');
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-labelledby', ID_TITULO_HORARIO);
+
+  const fondo = document.createElement('div');
+  fondo.className = 'modal__fondo';
+  fondo.dataset.accion = 'cerrar';
+
+  const caja = document.createElement('div');
+  caja.className = 'modal__caja modal__caja--horario';
+
+  const cabecera = document.createElement('header');
+  cabecera.className = 'modal__cabecera';
+
+  const titulo = document.createElement('h2');
+  titulo.className = 'modal__titulo';
+  titulo.id = ID_TITULO_HORARIO;
   titulo.textContent = `Horario de ${ptis.nombre}`;
-  const horario = crearHorario(ptis);
-  modal.append(titulo, horario);
+
+  const cuerpo = document.createElement('div');
+  cuerpo.className = 'modal__cuerpo';
+  cuerpo.append(crearHorario(ptis));
+
+  cabecera.append(titulo, crearBotonCerrar());
+  caja.append(cabecera, cuerpo);
+  modal.append(fondo, caja);
+
   return modal;
 };
+
+let modalHorario = null;
+
+const cerrarHorario = () => {
+  if (!modalHorario) return;
+
+  modalHorario.remove();
+  modalHorario = null;
+};
+
 const mostrarHorario = (ficha) => {
-  const targetObj = PTIS.find((it) => it.id == ficha.dataset.id);
-  const modal = crearModal(targetObj);
-  document.body.append(modal);
+  const ptis = PTIS.find((it) => String(it.id) === ficha.dataset.id);
+
+  if (!ptis) return;
+
+  cerrarHorario();
+  modalHorario = crearModal(ptis);
+  document.body.append(modalHorario);
+  modalHorario.querySelector('.modal__cerrar').focus();
 };
 
 cargarSolicitudes();
 cargarPtis();
+
 document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-accion="cerrar"]')) {
+    cerrarHorario();
+    return;
+  }
+
   const ficha = e.target.closest('.ficha-ptis');
+
   if (!ficha) return;
+
   mostrarHorario(ficha);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    cerrarHorario();
+  }
 });
