@@ -70,9 +70,9 @@ const cargarSolicitudes = () => {
 const crearFichaPtis = (ptis) => {
   const item = document.createElement('li');
   item.dataset.id = ptis.id;
+  item.className = 'ficha-ptis';
 
   const enlace = document.createElement('a');
-  enlace.className = 'ficha-ptis';
 
   const persona = document.createElement('div');
   persona.className = 'ficha-ptis__persona';
@@ -136,18 +136,49 @@ const cargarPtis = () => {
 
   lista.append(fragmento);
 };
-const crearModal = (PTIS) => {
+
+const crearHorario = (ptis) => {
+  const horario = document.createElement('table');
+  const horarioHead = document.createElement('thead');
+  const horarioBody = document.createElement('tbody');
+  const dias = Object.keys(ptis.horario);
+  const filaHead = document.createElement('tr');
+  const esquina = document.createElement('th');
+  filaHead.append(esquina);
+
+  dias.forEach((dia) => {
+    const celdaDia = document.createElement('th');
+    celdaDia.textContent = dia;
+    filaHead.append(celdaDia);
+  });
+  horarioHead.append(filaHead);
+  horario.append(horarioHead);
+
+  const horas = Object.keys(ptis.horario[dias[0]]);
+  horas.forEach((hora) => {
+    const fila = document.createElement('tr');
+    const celdaHora = document.createElement('td');
+    celdaHora.textContent = hora;
+    fila.append(celdaHora);
+    dias.forEach((dia) => {
+      const celda = document.createElement('td');
+      celda.textContent = ptis.horario[dia][hora];
+      fila.append(celda);
+    });
+    horarioBody.append(fila);
+  });
+  horario.append(horarioBody);
+  return horario;
+};
+
+const crearModal = (ptis) => {
   const modal = document.createElement('article');
   const title = document.createElement('h1');
-  title.textContent = `Horario de ${PTIS.nombre}`;
-  const horario = document.createElement('table');
-  const horarioBody = document.createElement('tbody');
-  let i = 0;
-  const dias = Object.keys(PTIS.horario);
-  while (i < dias.length) {}
+  title.textContent = `Horario de ${ptis.nombre}`;
+  const horario = crearHorario(ptis);
 };
 const mostrarHorario = (e) => {
-  const targetObj = PTIS.find((it) => it.id === e.target.dataset.id);
+  const targetObj = PTIS.find((it) => it.id == e.target.dataset.id);
   crearModal(targetObj);
 };
 cargarSolicitudes();
