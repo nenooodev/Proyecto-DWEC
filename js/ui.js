@@ -173,13 +173,23 @@ const crearHorario = (ptis) => {
 
 const crearModal = (ptis) => {
   const modal = document.createElement('article');
-  const title = document.createElement('h1');
-  title.textContent = `Horario de ${ptis.nombre}`;
+  modal.className = 'modal';
+  const titulo = document.createElement('h1');
+  titulo.textContent = `Horario de ${ptis.nombre}`;
   const horario = crearHorario(ptis);
+  modal.append(titulo, horario);
+  return modal;
 };
-const mostrarHorario = (e) => {
-  const targetObj = PTIS.find((it) => it.id == e.target.dataset.id);
-  crearModal(targetObj);
+const mostrarHorario = (ficha) => {
+  const targetObj = PTIS.find((it) => it.id == ficha.dataset.id);
+  const modal = crearModal(targetObj);
+  document.body.append(modal);
 };
+
 cargarSolicitudes();
 cargarPtis();
+document.addEventListener('click', (e) => {
+  const ficha = e.target.closest('.ficha-ptis');
+  if (!ficha) return;
+  mostrarHorario(ficha);
+});
