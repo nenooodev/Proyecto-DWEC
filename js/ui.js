@@ -137,19 +137,9 @@ const cargarPtis = () => {
   lista.append(fragmento);
 };
 
-const DIAS_SEMANA = [
-  'Domingo',
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sábado',
-];
-
 const ID_TITULO_HORARIO = 'titulo-horario';
 
-const obtenerDiaActual = () => DIAS_SEMANA[new Date().getDay()];
+const obtenerDiaActual = (dias) => dias[new Date().getDay()];
 
 const crearHorario = (ptis) => {
   const horario = document.createElement('table');
@@ -167,29 +157,20 @@ const crearHorario = (ptis) => {
   horarioBody.className = 'tabla-horario__cuerpo';
 
   const dias = Object.keys(ptis.horario);
-  const diaActual = obtenerDiaActual();
+  const diaActual = obtenerDiaActual(dias);
   const filaHead = document.createElement('tr');
   filaHead.className = 'tabla-horario__fila';
 
   const esquina = document.createElement('th');
   esquina.className = 'tabla-horario__esquina';
-  esquina.scope = 'col';
   filaHead.append(esquina);
 
   dias.forEach((dia) => {
     const celdaDia = document.createElement('th');
     celdaDia.className = 'tabla-horario__dia';
-    celdaDia.scope = 'col';
     celdaDia.textContent = dia;
 
-    if (dia === diaActual) {
-      celdaDia.classList.add('tabla-horario__dia--hoy');
-
-      const hoy = document.createElement('span');
-      hoy.className = 'visualmente-oculto';
-      hoy.textContent = ' (hoy)';
-      celdaDia.append(hoy);
-    }
+    if (dia === diaActual) celdaDia.classList.add('tabla-horario__dia--hoy');
 
     filaHead.append(celdaDia);
   });
@@ -201,10 +182,8 @@ const crearHorario = (ptis) => {
   horas.forEach((hora) => {
     const fila = document.createElement('tr');
     fila.className = 'tabla-horario__fila';
-
     const celdaHora = document.createElement('th');
     celdaHora.className = 'tabla-horario__hora';
-    celdaHora.scope = 'row';
     celdaHora.textContent = hora;
     fila.append(celdaHora);
 
@@ -289,7 +268,6 @@ const mostrarHorario = (ficha) => {
   cerrarHorario();
   modalHorario = crearModal(ptis);
   document.body.append(modalHorario);
-  modalHorario.querySelector('.modal__cerrar').focus();
 };
 
 cargarSolicitudes();
@@ -306,10 +284,4 @@ document.addEventListener('click', (e) => {
   if (!ficha) return;
 
   mostrarHorario(ficha);
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    cerrarHorario();
-  }
 });
