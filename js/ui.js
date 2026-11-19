@@ -1,9 +1,62 @@
-import { PTIS, solicitudes } from './datos.js';
+import { PTIS, solicitudes, urgentes } from './datos.js';
 
 const obtenerIniciales = (nombreCompleto) => {
   const [nombre, primerApellido] = nombreCompleto.trim().split(/\s+/);
 
   return `${nombre[0]}${primerApellido[0]}`.toUpperCase();
+};
+
+const crearSolicitudUrgente = (urgente) => {
+  const enlace = document.createElement('a');
+  enlace.className = 'solicitud-urgente';
+
+  const cabecera = document.createElement('div');
+  cabecera.className = 'solicitud-urgente__cabecera';
+
+  const etiqueta = document.createElement('span');
+  etiqueta.className = 'solicitud-urgente__etiqueta';
+
+  const icono = document.createElement('img');
+  icono.src = 'assets/icons/punto-urgente.svg';
+  icono.alt = '';
+
+  etiqueta.append(icono, 'Urgente');
+
+  const tiempo = document.createElement('span');
+  tiempo.className = 'solicitud-urgente__tiempo';
+  tiempo.textContent = 'hace 2 min';
+
+  const persona = document.createElement('div');
+  persona.className = 'solicitud-urgente__persona';
+
+  const avatar = document.createElement('span');
+  avatar.className = 'solicitud-urgente__avatar';
+  avatar.ariaHidden = 'true';
+  avatar.textContent = obtenerIniciales(urgente.alumno.nombre);
+
+  const nombre = document.createElement('p');
+  nombre.className = 'solicitud-urgente__nombre';
+  nombre.textContent = urgente.alumno.nombre;
+
+  cabecera.append(etiqueta, tiempo);
+  persona.append(avatar, nombre);
+  enlace.append(cabecera, persona);
+
+  return enlace;
+};
+
+const cargarSolicitudesUrgentes = () => {
+  const contenedor = document.querySelector('.solicitudes__urgentes');
+
+  if (!contenedor) return;
+
+  const fragmento = document.createDocumentFragment();
+
+  urgentes.forEach((urgente) => {
+    fragmento.append(crearSolicitudUrgente(urgente));
+  });
+
+  contenedor.append(fragmento);
 };
 
 const crearFichaSolicitud = (solicitud) => {
@@ -271,6 +324,7 @@ const mostrarHorario = (ficha) => {
   document.body.append(modalHorario);
 };
 
+cargarSolicitudesUrgentes();
 cargarSolicitudes();
 cargarPtis();
 

@@ -1025,13 +1025,21 @@ input:focus-visible {
   line-height: 20px;
 }
 
+.solicitudes__urgentes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 28px;
+}
+
 .solicitud-urgente {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 342px;
   max-width: calc(100% - 32px);
-  margin-top: 28px;
   padding: 8px 15px;
   border: 1px solid var(--color-alerta-borde);
   border-radius: 18px;

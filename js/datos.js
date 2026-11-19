@@ -310,4 +310,8 @@ export const solicitudes = [
   },
 ];
 
-const
+export const urgentes = [
+  {
+    alumno: { foto: 'http://imagen.png', nombre: 'Mario Vázquez Cano' },
+  },
+];
