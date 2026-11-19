@@ -73,6 +73,7 @@ const crearFichaPtis = (ptis) => {
   item.className = 'ficha-ptis';
 
   const enlace = document.createElement('a');
+  enlace.className = 'ficha-ptis__enlace';
 
   const persona = document.createElement('div');
   persona.className = 'ficha-ptis__persona';
