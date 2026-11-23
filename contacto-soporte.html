@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Contacto con soporte · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <main class="app__main soporte" id="contenido">
+        <header class="soporte__cabecera">
+          <h1 class="soporte__titulo">¿Necesitas ayuda?</h1>
+          <p class="soporte__texto">Escríbenos y te responderemos lo antes posible.</p>
+        </header>
+
+        <section class="soporte__tarjeta" aria-labelledby="contacto-titulo">
+          <div class="soporte__encabezado">
+            <span class="soporte__icono" aria-hidden="true">
+              <img src="assets/icons/asistencia.svg" alt="" />
+            </span>
+            <h2 class="soporte__titulo-tarjeta" id="contacto-titulo">Contacta con el equipo</h2>
+          </div>
+
+          <form class="soporte__formulario" action="#" method="post">
+            <div class="campo">
+              <label class="campo__etiqueta" for="nombre">Nombre completo</label>
+              <input
+                class="campo__entrada"
+                id="nombre"
+                name="nombre"
+                type="text"
+                placeholder="Marta Sánchez"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="correo">Correo electrónico</label>
+              <input
+                class="campo__entrada"
+                id="correo"
+                name="correo"
+                type="email"
+                placeholder="marta@correo.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="mensaje">Mensaje</label>
+              <textarea
+                class="campo__entrada campo__entrada--area"
+                id="mensaje"
+                name="mensaje"
+                rows="3"
+                placeholder="Cuéntanos en qué podemos ayudarte..."
+                required
+              ></textarea>
+            </div>
+
+            <button class="boton boton--primario" type="submit">Enviar mensaje</button>
+          </form>
+        </section>
+
+        <a class="soporte__volver" href="index.html">
+          <img src="assets/icons/volver.svg" alt="" />
+          Volver al inicio
+        </a>
+      </main>
+    </div>
+  </body>
+</html>

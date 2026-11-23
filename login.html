@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Inicia sesión · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <main class="app__main login" id="contenido">
+        <img
+          class="login__decoracion login__decoracion--superior"
+          src="assets/icons/decoracion-superior.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          class="login__decoracion login__decoracion--inferior"
+          src="assets/icons/decoracion-inferior.svg"
+          alt=""
+          aria-hidden="true"
+        />
+
+        <header class="login__cabecera">
+          <h1 class="login__titulo">Inicia sesión</h1>
+          <p class="login__texto">Entra con tus credenciales de iPasen o iSéneca.</p>
+        </header>
+
+        <section class="login__tarjeta" aria-labelledby="acceso-titulo">
+          <h2 class="login__titulo-tarjeta" id="acceso-titulo">Inicia sesión</h2>
+
+          <form class="login__formulario" action="#" method="post">
+            <div class="campo">
+              <label class="campo__etiqueta" for="usuario">Nombre de usuario</label>
+              <input
+                class="campo__entrada"
+                id="usuario"
+                name="usuario"
+                type="text"
+                placeholder="usuario.iPasen"
+                autocomplete="username"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="correo-login">Correo</label>
+              <input
+                class="campo__entrada"
+                id="correo-login"
+                name="correo"
+                type="email"
+                placeholder="correo@ies.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="contrasena">Contraseña</label>
+              <div class="campo__caja">
+                <input
+                  class="campo__entrada campo__entrada--icono"
+                  id="contrasena"
+                  name="contrasena"
+                  type="password"
+                  placeholder="••••••••"
+                  required
+                />
+                <button class="campo__boton-ojo" type="button" aria-label="Mostrar u ocultar contraseña">
+                  <img src="assets/icons/ojo-contrasena.svg" alt="" />
+                </button>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="repetir-contrasena">Repetir contraseña</label>
+              <div class="campo__caja">
+                <input
+                  class="campo__entrada campo__entrada--icono"
+                  id="repetir-contrasena"
+                  name="repetir_contrasena"
+                  type="password"
+                  placeholder="••••••••"
+                  required
+                />
+                <button class="campo__boton-ojo" type="button" aria-label="Mostrar u ocultar contraseña">
+                  <img src="assets/icons/ojo-contrasena.svg" alt="" />
+                </button>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="fecha-nacimiento">Fecha de nacimiento</label>
+              <input
+                class="campo__entrada"
+                id="fecha-nacimiento"
+                name="fecha_nacimiento"
+                type="date"
+                required
+              />
+            </div>
+
+            <div class="login__recordar">
+              <input class="login__casilla" id="recordarme" name="recordarme" type="checkbox" />
+              <label class="login__recordar-texto" for="recordarme"
+                >Recordarme en este dispositivo</label
+              >
+            </div>
+
+            <button class="boton boton--primario" type="submit">Inicia sesión</button>
+          </form>
+        </section>
+
+        <a class="login__volver" href="index.html">
+          <img src="assets/icons/volver.svg" alt="" />
+          Volver al inicio
+        </a>
+      </main>
+    </div>
+  </body>
+</html>
