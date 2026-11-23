@@ -2033,7 +2033,188 @@ input:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   23. Adaptación a pantallas estrechas
+   23. Gestión de usuarios (bloques usuarios, usuario-ficha y aviso-error)
+   -------------------------------------------------------------------------- */
+.usuarios__tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 8px 12px 0;
+  padding: 22px;
+  border-radius: 24px;
+  background: var(--color-superficie);
+}
+
+.usuarios__encabezado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Chip circular con el icono, mismo lenguaje visual que acceso__icono */
+.usuarios__icono {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--color-menta);
+}
+
+.usuarios__icono img {
+  width: 20px;
+  height: 20px;
+}
+
+.usuarios__titulo-tarjeta {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.usuarios__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Agrupa los campos de contraseña para poder ocultarlos al editar */
+.usuarios__campos-contrasena {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.usuarios__titulo-lista {
+  padding: 20px 16px 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.lista-usuarios {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+
+.usuario-ficha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 74px;
+  padding: 12px;
+  border: 1px solid var(--color-borde);
+  border-radius: 16px;
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.usuario-ficha__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background: var(--color-menta);
+  color: var(--color-verde-oscuro);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.usuario-ficha__datos {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.usuario-ficha__nombre {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  overflow-wrap: anywhere;
+}
+
+.usuario-ficha__correo {
+  color: var(--color-tinta-suave);
+  font-size: 14px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.usuario-ficha__acciones {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.usuarios__vacio {
+  padding: 0 16px 24px;
+  color: var(--color-tinta-suave);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* Mensaje de error reutilizable en formularios */
+.aviso-error {
+  color: var(--color-alerta);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/* Variantes de botón para acciones secundarias y destructivas */
+.boton--secundario {
+  background: var(--color-superficie);
+  color: var(--color-verde-oscuro);
+  border: 1px solid var(--color-borde-fuerte);
+}
+
+.boton--secundario:hover {
+  background: var(--color-niebla);
+}
+
+.boton--peligro {
+  background: var(--color-alerta-suave);
+  color: var(--color-alerta);
+  border: 1px solid var(--color-alerta-borde);
+}
+
+.boton--peligro:hover {
+  background: var(--color-alerta);
+  color: var(--color-blanco);
+}
+
+/* Botón compacto para las acciones de cada ficha */
+.boton--compacto {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Enlaces bajo la tarjeta de acceso */
+.login__enlaces {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   24. Adaptación a pantallas estrechas
    -------------------------------------------------------------------------- */
 @media (max-width: 430px) {
   .pagina {

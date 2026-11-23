@@ -6,7 +6,8 @@ const obtenerAnios = (valor) => {
     nacimiento.getFullYear() -
     Number(
       hoy.getMonth() < nacimiento.getMonth() ||
-        (hoy.getMonth() === nacimiento.getMonth() && hoy.getDate() < nacimiento.getDate())
+        (hoy.getMonth() === nacimiento.getMonth() &&
+          hoy.getDate() < nacimiento.getDate()),
     );
 
   return anios;

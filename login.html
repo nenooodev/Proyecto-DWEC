@@ -34,7 +34,8 @@
         <section class="login__tarjeta" aria-labelledby="acceso-titulo">
           <h2 class="login__titulo-tarjeta" id="acceso-titulo">Inicia sesión</h2>
 
-          <form class="login__formulario" action="#" method="post">
+          <form class="login__formulario" action="#" method="post" id="formulario-acceso">
+            <p class="aviso-error" id="acceso-error" role="alert" hidden></p>
             <div class="campo">
               <label class="campo__etiqueta" for="usuario">Nombre de usuario</label>
               <input
@@ -117,11 +118,19 @@
           </form>
         </section>
 
-        <a class="login__volver" href="index.html">
-          <img src="assets/icons/volver.svg" alt="" />
-          Volver al inicio
-        </a>
+        <div class="login__enlaces">
+          <a class="login__volver" href="usuarios.html">
+            <img src="assets/icons/usuarios.svg" alt="" />
+            Gestionar usuarios
+          </a>
+          <a class="login__volver" href="index.html">
+            <img src="assets/icons/volver.svg" alt="" />
+            Volver al inicio
+          </a>
+        </div>
       </main>
     </div>
+
+    <script type="module" src="js/login.js"></script>
   </body>
 </html>

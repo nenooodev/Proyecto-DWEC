@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Usuarios · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <main class="app__main usuarios" id="contenido">
+        <header class="barra-superior">
+          <a class="barra-superior__volver" href="login.html">
+            <img src="assets/icons/volver.svg" alt="" />
+          </a>
+          <h1 class="barra-superior__titulo">Usuarios</h1>
+        </header>
+
+        <section class="usuarios__tarjeta" aria-labelledby="titulo-formulario-usuario">
+          <div class="usuarios__encabezado">
+            <span class="usuarios__icono" aria-hidden="true">
+              <img src="assets/icons/usuarios.svg" alt="" />
+            </span>
+            <h2 class="usuarios__titulo-tarjeta" id="titulo-formulario-usuario">Nuevo usuario</h2>
+          </div>
+
+          <form class="usuarios__formulario" action="#" method="post" id="formulario-usuario">
+            <p class="aviso-error" id="usuario-error" role="alert" hidden></p>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="usuario-nombre">Nombre de usuario</label>
+              <input
+                class="campo__entrada"
+                id="usuario-nombre"
+                name="usuario"
+                type="text"
+                placeholder="marta.sanchez"
+                autocomplete="username"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="usuario-correo">Correo electrónico</label>
+              <input
+                class="campo__entrada"
+                id="usuario-correo"
+                name="correo"
+                type="email"
+                placeholder="marta@correo.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <!-- La contraseña no se guarda en el navegador: al editar, estos campos se ocultan -->
+            <div class="usuarios__campos-contrasena" id="campos-contrasena">
+              <div class="campo">
+                <label class="campo__etiqueta" for="usuario-contrasena">Contraseña</label>
+                <input
+                  class="campo__entrada campo__entrada--icono"
+                  id="usuario-contrasena"
+                  name="contrasena"
+                  type="password"
+                  placeholder="Mínimo 8 caracteres, una mayúscula y un número"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+
+              <div class="campo">
+                <label class="campo__etiqueta" for="usuario-repetir-contrasena">Repite la contraseña</label>
+                <input
+                  class="campo__entrada campo__entrada--icono"
+                  id="usuario-repetir-contrasena"
+                  name="repetir_contrasena"
+                  type="password"
+                  placeholder="Vuelve a escribir la contraseña"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="campo">
+              <label class="campo__etiqueta" for="usuario-fecha-nacimiento">Fecha de nacimiento</label>
+              <input
+                class="campo__entrada"
+                id="usuario-fecha-nacimiento"
+                name="fecha_nacimiento"
+                type="date"
+                required
+              />
+            </div>
+
+            <button class="boton boton--primario" type="submit" id="boton-enviar-usuario">
+              Crear usuario
+            </button>
+            <button
+              class="boton boton--secundario"
+              type="button"
+              id="boton-cancelar-edicion"
+              hidden
+            >
+              Cancelar edición
+            </button>
+          </form>
+        </section>
+
+        <h2 class="usuarios__titulo-lista">Usuarios registrados</h2>
+        <ul class="lista-usuarios" id="lista-usuarios"></ul>
+        <p class="usuarios__vacio" id="usuarios-vacio" hidden>No hay usuarios registrados todavía.</p>
+      </main>
+    </div>
+
+    <script type="module" src="js/usuarios.js"></script>
+  </body>
+</html>
