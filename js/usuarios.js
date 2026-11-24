@@ -7,6 +7,7 @@
  */
 
 import { obtenerTodos, obtenerPorId, crear, actualizar, borrar } from './almacen.js';
+import { esCampoValidable, aplicarEstado, validarYMostrar } from './formularios.js';
 import {
   validarUsuario,
   validarContrasena,
@@ -20,7 +21,6 @@ const COLECCION = 'usuarios';
 const formulario = document.querySelector('#formulario-usuario');
 const lista = document.querySelector('#lista-usuarios');
 const avisoVacio = document.querySelector('#usuarios-vacio');
-const mensajeError = document.querySelector('#usuario-error');
 const tituloTarjeta = document.querySelector('#titulo-formulario-usuario');
 const botonEnviar = document.querySelector('#boton-enviar-usuario');
 const botonCancelar = document.querySelector('#boton-cancelar-edicion');
@@ -30,16 +30,6 @@ const camposContrasena = document.querySelector('#campos-contrasena');
 // Estado de edición: null = creando, id numérico = editando ese usuario.
 // ---------------------------------------------------------------------------
 let idEnEdicion = null;
-
-function mostrarError(mensaje) {
-  mensajeError.textContent = mensaje;
-  mensajeError.hidden = false;
-}
-
-function ocultarError() {
-  mensajeError.textContent = '';
-  mensajeError.hidden = true;
-}
 
 function iniciales(nombreUsuario) {
   return nombreUsuario
@@ -114,49 +104,46 @@ function aplicarModoEdicion() {
 
 function resetearFormulario() {
   idEnEdicion = null;
+  const campos = [...formulario.elements].filter(esCampoValidable);
+  campos.forEach((campo) => aplicarEstado(campo, null));
   formulario.reset();
-  ocultarError();
   aplicarModoEdicion();
 }
 
 formulario.addEventListener('submit', (evento) => {
   evento.preventDefault();
-  ocultarError();
 
   const datos = new FormData(formulario);
   const usuario = datos.get('usuario').trim();
   const correo = datos.get('correo').trim().toLowerCase();
   const fechaNacimiento = datos.get('fecha_nacimiento');
 
-  const errorUsuario = validarUsuario(formulario.elements.usuario);
+  const campos = [...formulario.elements].filter(esCampoValidable);
+  campos.forEach((campo) => aplicarEstado(campo, null));
+
+  const errorUsuario = validarYMostrar(formulario.elements.usuario);
+  const errorCorreo = validarYMostrar(formulario.elements.correo);
+  const errorFecha = validarYMostrar(formulario.elements.fecha_nacimiento);
+  const errorContrasena =
+    idEnEdicion === null ? validarYMostrar(formulario.elements.contrasena) : null;
+  const errorConfirmacion =
+    idEnEdicion === null ? validarYMostrar(formulario.elements.repetir_contrasena) : null;
+
   if (errorUsuario) {
-    mostrarError(errorUsuario);
-  }
-
-  const errorCorreo = validarEmail(formulario.elements.correo);
-  if (errorCorreo) {
-    mostrarError(errorCorreo);
-  }
-
-  const errorFecha = validarFecha(formulario.elements.fecha_nacimiento);
-  if (errorFecha) {
-    mostrarError(errorFecha);
-  }
-
-  // La contraseña solo se valida al crear: nunca se guarda en el navegador.
-  if (idEnEdicion === null) {
-    const errorContrasena = validarContrasena(formulario.elements.contrasena);
-    if (errorContrasena) {
-      mostrarError(errorContrasena);
-    }
-
-    const errorConfirmacion = validarConfirmacion(
-      formulario.elements.contrasena,
-      formulario.elements.repetir_contrasena,
-    );
-    if (errorConfirmacion) {
-      mostrarError(errorConfirmacion);
-    }
+    formulario.elements.usuario.focus();
+    return;
+  } else if (errorCorreo) {
+    formulario.elements.correo.focus();
+    return;
+  } else if (errorContrasena) {
+    formulario.elements.contrasena.focus();
+    return;
+  } else if (errorFecha) {
+    formulario.elements.fecha_nacimiento.focus();
+    return;
+  } else if (errorConfirmacion) {
+    formulario.elements.repetir_contrasena.focus;
+    return;
   }
 
   // Duplicados por nombre o correo (ignorando al usuario que se está editando).
@@ -165,8 +152,13 @@ formulario.addEventListener('submit', (evento) => {
       u.id !== idEnEdicion &&
       (u.usuario.toLowerCase() === usuario.toLowerCase() || u.correo === correo),
   );
+
   if (duplicado) {
-    mostrarError('Ya existe otro usuario con ese nombre o correo.');
+    aplicarEstado(
+      formulario.elements.usuario,
+      'Ya existe otro usuario con ese nombre o correo.',
+    );
+    formulario.elements.usuario.focus();
     return;
   }
 
@@ -203,7 +195,9 @@ lista.addEventListener('click', (evento) => {
     formulario.querySelector('[name="correo"]').value = usuario.correo;
     formulario.querySelector('[name="fecha_nacimiento"]').value =
       usuario.fechaNacimiento ?? '';
-    ocultarError();
+    [...formulario.elements]
+      .filter(esCampoValidable)
+      .forEach((campo) => aplicarEstado(campo, null));
     aplicarModoEdicion();
     formulario.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }

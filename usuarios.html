@@ -35,9 +35,8 @@
             action="#"
             method="post"
             id="formulario-usuario"
+            novalidate
           >
-            <p class="aviso-error" id="usuario-error" role="alert" hidden></p>
-
             <div class="campo">
               <label class="campo__etiqueta" for="usuario-nombre"
                 >Nombre de usuario</label
@@ -53,6 +52,7 @@
                 maxlength="30"
                 required
               />
+              <p class="campo__error" id="error-usuario-nombre" hidden></p>
             </div>
 
             <div class="campo">
@@ -69,6 +69,7 @@
                 maxlength="254"
                 required
               />
+              <p class="campo__error" id="error-usuario-correo" hidden></p>
             </div>
 
             <!-- La contraseña no se guarda en el navegador: al editar, estos campos se ocultan -->
@@ -86,6 +87,7 @@
                   maxlength="64"
                   required
                 />
+                <p class="campo__error" id="error-usuario-contrasena" hidden></p>
               </div>
 
               <div class="campo">
@@ -103,6 +105,7 @@
                   maxlength="64"
                   required
                 />
+                <p class="campo__error" id="error-usuario-repetir_contrasena" hidden></p>
               </div>
             </div>
 
@@ -120,6 +123,7 @@
                 max="2014-11-24"
                 required
               />
+              <p class="campo__error" id="error-usuario-fecha-nacimiento" hidden></p>
             </div>
 
             <button class="boton boton--primario" type="submit" id="boton-enviar-usuario">
