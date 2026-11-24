@@ -70,15 +70,48 @@
             </div>
 
             <div class="campo">
-              <label class="campo__etiqueta" for="mensaje">Mensaje</label>
+              <label class="campo__etiqueta" for="telefono">Teléfono</label>
+              <input
+                class="campo__entrada"
+                id="telefono"
+                name="telefono"
+                type="tel"
+                placeholder="612345678"
+                autocomplete="tel"
+                maxlength="13"
+                aria-describedby="error-telefono"
+                aria-invalid="false"
+              />
+              <p class="campo__error" id="error-telefono" hidden></p>
+            </div>
+
+            <div class="soporte__preferencia">
+              <input
+                class="soporte__preferencia-casilla"
+                id="prefiero-llamada"
+                name="prefiero_llamada"
+                type="checkbox"
+              />
+              <label class="soporte__preferencia-texto" for="prefiero-llamada">
+                Prefiero que me llaméis
+              </label>
+            </div>
+
+            <div class="campo">
+              <div class="campo__cabecera">
+                <label class="campo__etiqueta" for="mensaje">Motivo de contacto</label>
+                <span class="campo__contador" id="contador-mensaje">0/500</span>
+              </div>
               <textarea
                 class="campo__entrada campo__entrada--area"
                 id="mensaje"
                 name="mensaje"
                 rows="3"
-                placeholder="Cuéntanos en qué podemos ayudarte..."
+                minlength="20"
                 maxlength="500"
-                aria-describedby="error-mensaje"
+                placeholder="Cuéntanos el motivo de tu consulta..."
+                data-contador="contador-mensaje"
+                aria-describedby="error-mensaje contador-mensaje"
                 aria-invalid="false"
                 required
               ></textarea>
@@ -90,10 +123,16 @@
           </form>
         </section>
 
-        <a class="soporte__volver" href="index.html">
-          <img src="assets/icons/volver.svg" alt="" />
-          Volver al inicio
-        </a>
+        <div class="soporte__enlaces">
+          <a class="soporte__volver" href="mensajes-contacto.html">
+            <img src="assets/icons/solicitudes.svg" alt="" />
+            Ver mensajes enviados
+          </a>
+          <a class="soporte__volver" href="index.html">
+            <img src="assets/icons/volver.svg" alt="" />
+            Volver al inicio
+          </a>
+        </div>
       </main>
     </div>
 

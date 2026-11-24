@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f7f8f3" />
+    <title>Mensajes de contacto · Aula Asistencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body class="pagina">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <main class="app__main contactos" id="contenido">
+        <header class="barra-superior">
+          <a
+            class="barra-superior__volver"
+            href="contacto-soporte.html"
+            aria-label="Volver al formulario de contacto"
+          >
+            <img src="assets/icons/volver.svg" alt="" />
+          </a>
+          <h1 class="barra-superior__titulo">Mensajes de contacto</h1>
+        </header>
+
+        <h2 class="contactos__titulo">Mensajes recibidos</h2>
+        <ul class="contactos__lista" id="lista-contactos"></ul>
+        <p class="contactos__vacio" id="contactos-vacio" hidden>
+          Todavía no se ha enviado ningún mensaje de contacto.
+        </p>
+      </main>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

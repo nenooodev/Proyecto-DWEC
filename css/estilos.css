@@ -1772,6 +1772,22 @@ input:focus-visible {
   line-height: 20px;
 }
 
+/* Fila superior del campo con la etiqueta y, si aplica, el contador */
+.campo__cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.campo__contador {
+  color: var(--color-tinta-suave);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
 .campo__error {
   color: var(--color-alerta);
   font-size: 13px;
@@ -1926,6 +1942,27 @@ input:focus-visible {
   gap: 14px;
 }
 
+.soporte__preferencia {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.soporte__preferencia-casilla {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--color-verde-oscuro);
+  cursor: pointer;
+}
+
+.soporte__preferencia-texto {
+  color: var(--color-tinta-suave);
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
 .soporte__volver {
   display: inline-flex;
   align-items: center;
@@ -1934,6 +1971,12 @@ input:focus-visible {
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
+}
+
+.soporte__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .soporte__volver:hover {
@@ -2171,6 +2214,90 @@ input:focus-visible {
 }
 
 .usuarios__vacio {
+  padding: 0 16px 24px;
+  color: var(--color-tinta-suave);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   24. Mensajes de contacto (contactos.html)
+   -------------------------------------------------------------------------- */
+.contactos {
+  padding-bottom: 24px;
+}
+
+.contactos__titulo {
+  padding: 20px 16px 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.contactos__lista {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+
+.contacto-ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--color-borde);
+  border-radius: 16px;
+  background: var(--color-superficie);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.contacto-ficha__cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.contacto-ficha__nombre {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  overflow-wrap: anywhere;
+}
+
+.contacto-ficha__fecha {
+  flex-shrink: 0;
+  color: var(--color-tinta-suave);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.contacto-ficha__datos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--color-tinta-suave);
+  font-size: 14px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.contacto-ficha__preferencia {
+  color: var(--color-verde-oscuro);
+  font-weight: 700;
+}
+
+.contacto-ficha__motivo {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.contactos__vacio {
   padding: 0 16px 24px;
   color: var(--color-tinta-suave);
   font-size: 14px;

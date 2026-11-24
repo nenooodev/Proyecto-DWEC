@@ -12,6 +12,7 @@ import {
   validarContrasena,
   validarEmail,
   validarFecha,
+  validarTelefono,
   validarUsuario,
 } from './validacion.js';
 
@@ -29,6 +30,7 @@ const TIPOS_IGNORADOS = new Set([
 ]);
 
 const SELECTOR_CAMPOS = 'input, textarea, select';
+const COLECCION_CONTACTOS = 'contactos';
 
 const VALIDADORES = {
   usuario: validarUsuario,
@@ -37,6 +39,7 @@ const VALIDADORES = {
     validarConfirmacion(campo, campo.form.elements.contrasena),
   fecha_nacimiento: validarFecha,
   correo: validarEmail,
+  telefono: validarTelefono,
 };
 
 const normalizarValor = (campo) => {
@@ -123,6 +126,27 @@ const limpiar = (campos) => {
   });
 };
 
+/**
+ * Actualiza el contador asociado a un campo. El id del contador se lee del
+ * atributo `data-contador` del propio campo, igual que el resto de límites.
+ */
+const configurarContador = (campo) => {
+  const contador = document.getElementById(campo.dataset.contador);
+
+  if (!contador) {
+    return () => {};
+  }
+
+  const actualizar = () => {
+    contador.textContent = `${campo.value.length}/${campo.maxLength}`;
+  };
+
+  campo.addEventListener('input', actualizar);
+  actualizar();
+
+  return actualizar;
+};
+
 const configurarAcceso = (formulario) => {
   const mensajeError = document.querySelector('#acceso-error');
   const campos = [...formulario.elements].filter(esCampoValidable);
@@ -205,6 +229,22 @@ const configurarAcceso = (formulario) => {
 const configurarContacto = (formulario) => {
   const mensajeExito = document.querySelector('#contacto-exito');
   const campos = [...formulario.elements].filter(esCampoValidable);
+  const telefono = formulario.elements.telefono;
+  const prefieroLlamada = formulario.elements.prefiero_llamada;
+  const mensaje = formulario.elements.mensaje;
+  const actualizarContador = mensaje ? configurarContador(mensaje) : () => {};
+
+  const actualizarTelefonoObligatorio = () => {
+    telefono.required = prefieroLlamada.checked;
+  };
+
+  actualizarTelefonoObligatorio();
+
+  prefieroLlamada.addEventListener('change', () => {
+    actualizarTelefonoObligatorio();
+    telefono.dataset.tocado = 'true';
+    validarYMostrar(telefono);
+  });
 
   campos.forEach((campo) => {
     campo.dataset.tocado = 'false';
@@ -236,14 +276,101 @@ const configurarContacto = (formulario) => {
       return;
     }
 
+    const datos = new FormData(formulario);
+
+    crear(COLECCION_CONTACTOS, {
+      id: Date.now(),
+      nombre: datos.get('nombre').trim(),
+      correo: datos.get('correo').trim().toLowerCase(),
+      telefono: datos.get('telefono').trim() || null,
+      prefiereLlamada: prefieroLlamada.checked,
+      motivo: datos.get('mensaje').trim(),
+      fecha: new Date().toISOString(),
+    });
+
     formulario.reset();
+    actualizarTelefonoObligatorio();
+    actualizarContador();
     limpiar(campos);
+    mensajeExito.textContent =
+      'Hemos recibido tu motivo de contacto. Te responderemos lo antes posible.';
     mensajeExito.hidden = false;
   });
 
   formulario.addEventListener('input', () => {
     mensajeExito.hidden = true;
   });
+};
+
+const formatearFecha = (valor) => {
+  const fecha = new Date(valor);
+
+  return Number.isNaN(fecha.getTime())
+    ? ''
+    : fecha.toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' });
+};
+
+const crearFichaContacto = (contacto) => {
+  const item = document.createElement('li');
+  item.className = 'contacto-ficha';
+
+  const cabecera = document.createElement('div');
+  cabecera.className = 'contacto-ficha__cabecera';
+
+  const nombre = document.createElement('p');
+  nombre.className = 'contacto-ficha__nombre';
+  nombre.textContent = contacto.nombre;
+
+  const fecha = document.createElement('time');
+  fecha.className = 'contacto-ficha__fecha';
+  fecha.dateTime = contacto.fecha ?? '';
+  fecha.textContent = formatearFecha(contacto.fecha);
+
+  cabecera.append(nombre, fecha);
+
+  const datos = document.createElement('div');
+  datos.className = 'contacto-ficha__datos';
+
+  const correo = document.createElement('p');
+  correo.textContent = `Correo: ${contacto.correo}`;
+  datos.append(correo);
+
+  if (contacto.telefono) {
+    const telefono = document.createElement('p');
+    telefono.textContent = `Teléfono: ${contacto.telefono}`;
+    datos.append(telefono);
+  }
+
+  if (contacto.prefiereLlamada) {
+    const preferencia = document.createElement('p');
+    preferencia.className = 'contacto-ficha__preferencia';
+    preferencia.textContent = 'Prefiere que le llamen';
+    datos.append(preferencia);
+  }
+
+  const motivo = document.createElement('p');
+  motivo.className = 'contacto-ficha__motivo';
+  motivo.textContent = contacto.motivo;
+
+  item.append(cabecera, datos, motivo);
+  return item;
+};
+
+const cargarContactos = () => {
+  const lista = document.querySelector('#lista-contactos');
+
+  if (!lista) return;
+
+  const contactos = obtenerTodos(COLECCION_CONTACTOS).slice().reverse();
+  const vacio = document.querySelector('#contactos-vacio');
+  const fragmento = document.createDocumentFragment();
+
+  contactos.forEach((contacto) => fragmento.append(crearFichaContacto(contacto)));
+  lista.append(fragmento);
+
+  if (vacio) {
+    vacio.hidden = contactos.length > 0;
+  }
 };
 
 const formularioAcceso = document.querySelector('#formulario-acceso');
@@ -255,3 +382,5 @@ const formularioContacto = document.querySelector('#formulario-contacto');
 if (formularioContacto) {
   configurarContacto(formularioContacto);
 }
+
+cargarContactos();
