@@ -34,7 +34,13 @@
         <section class="login__tarjeta" aria-labelledby="acceso-titulo">
           <h2 class="login__titulo-tarjeta" id="acceso-titulo">Inicia sesión</h2>
 
-          <form class="login__formulario" action="#" method="post" id="formulario-acceso">
+          <form
+            class="login__formulario"
+            action="#"
+            method="post"
+            id="formulario-acceso"
+            novalidate
+          >
             <p class="aviso-error" id="acceso-error" role="alert" hidden></p>
             <div class="campo">
               <label class="campo__etiqueta" for="usuario">Nombre de usuario</label>
@@ -45,8 +51,13 @@
                 type="text"
                 placeholder="usuario.iPasen"
                 autocomplete="username"
+                minlength="4"
+                maxlength="30"
+                aria-describedby="error-usuario"
+                aria-invalid="false"
                 required
               />
+              <p class="campo__error" id="error-usuario" hidden></p>
             </div>
 
             <div class="campo">
@@ -58,8 +69,12 @@
                 type="email"
                 placeholder="correo@ies.com"
                 autocomplete="email"
+                maxlength="254"
+                aria-describedby="error-correo-login"
+                aria-invalid="false"
                 required
               />
+              <p class="campo__error" id="error-correo-login" hidden></p>
             </div>
 
             <div class="campo">
@@ -71,16 +86,27 @@
                   name="contrasena"
                   type="password"
                   placeholder="••••••••"
+                  minlength="8"
+                  maxlength="64"
+                  aria-describedby="error-contrasena"
+                  aria-invalid="false"
                   required
                 />
-                <button class="campo__boton-ojo" type="button" aria-label="Mostrar u ocultar contraseña">
+                <button
+                  class="campo__boton-ojo"
+                  type="button"
+                  aria-label="Mostrar u ocultar contraseña"
+                >
                   <img src="assets/icons/ojo-contrasena.svg" alt="" />
                 </button>
               </div>
+              <p class="campo__error" id="error-contrasena" hidden></p>
             </div>
 
             <div class="campo">
-              <label class="campo__etiqueta" for="repetir-contrasena">Repetir contraseña</label>
+              <label class="campo__etiqueta" for="repetir-contrasena"
+                >Repetir contraseña</label
+              >
               <div class="campo__caja">
                 <input
                   class="campo__entrada campo__entrada--icono"
@@ -88,27 +114,49 @@
                   name="repetir_contrasena"
                   type="password"
                   placeholder="••••••••"
+                  minlength="8"
+                  maxlength="64"
+                  aria-describedby="error-repetir-contrasena"
+                  aria-invalid="false"
                   required
                 />
-                <button class="campo__boton-ojo" type="button" aria-label="Mostrar u ocultar contraseña">
+                <button
+                  class="campo__boton-ojo"
+                  type="button"
+                  aria-label="Mostrar u ocultar contraseña"
+                >
                   <img src="assets/icons/ojo-contrasena.svg" alt="" />
                 </button>
               </div>
+              <p class="campo__error" id="error-repetir-contrasena" hidden></p>
             </div>
 
             <div class="campo">
-              <label class="campo__etiqueta" for="fecha-nacimiento">Fecha de nacimiento</label>
+              <label class="campo__etiqueta" for="fecha-nacimiento"
+                >Fecha de nacimiento</label
+              >
+              <!-- Límites de edad (12-120 años): validarFecha los lee de aquí -->
               <input
                 class="campo__entrada"
                 id="fecha-nacimiento"
                 name="fecha_nacimiento"
                 type="date"
+                min="1906-11-24"
+                max="2014-11-24"
+                aria-describedby="error-fecha-nacimiento"
+                aria-invalid="false"
                 required
               />
+              <p class="campo__error" id="error-fecha-nacimiento" hidden></p>
             </div>
 
             <div class="login__recordar">
-              <input class="login__casilla" id="recordarme" name="recordarme" type="checkbox" />
+              <input
+                class="login__casilla"
+                id="recordarme"
+                name="recordarme"
+                type="checkbox"
+              />
               <label class="login__recordar-texto" for="recordarme"
                 >Recordarme en este dispositivo</label
               >
@@ -131,6 +179,6 @@
       </main>
     </div>
 
-    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

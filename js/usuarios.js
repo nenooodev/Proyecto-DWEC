@@ -126,27 +126,36 @@ formulario.addEventListener('submit', (evento) => {
   const datos = new FormData(formulario);
   const usuario = datos.get('usuario').trim();
   const correo = datos.get('correo').trim().toLowerCase();
-  const contrasena = datos.get('contrasena');
-  const repetirContrasena = datos.get('repetir_contrasena');
   const fechaNacimiento = datos.get('fecha_nacimiento');
 
-  if (validarUsuario(usuario)) {
-    mostrarError(validarUsuario(usuario));
+  const errorUsuario = validarUsuario(formulario.elements.usuario);
+  if (errorUsuario) {
+    mostrarError(errorUsuario);
   }
-  if (validarEmail(correo)) {
-    mostrarError(validarEmail(correo));
+
+  const errorCorreo = validarEmail(formulario.elements.correo);
+  if (errorCorreo) {
+    mostrarError(errorCorreo);
   }
-  if (validarFecha(fechaNacimiento)) {
-    mostrarError(validarFecha(fechaNacimiento));
+
+  const errorFecha = validarFecha(formulario.elements.fecha_nacimiento);
+  if (errorFecha) {
+    mostrarError(errorFecha);
   }
 
   // La contraseña solo se valida al crear: nunca se guarda en el navegador.
   if (idEnEdicion === null) {
-    if (validarContrasena(contrasena)) {
-      mostrarError(validarContrasena(contrasena));
+    const errorContrasena = validarContrasena(formulario.elements.contrasena);
+    if (errorContrasena) {
+      mostrarError(errorContrasena);
     }
-    if (validarConfirmacion(contrasena, repetirContrasena)) {
-      mostrarError(validarConfirmacion(contrasena, repetirContrasena));
+
+    const errorConfirmacion = validarConfirmacion(
+      formulario.elements.contrasena,
+      formulario.elements.repetir_contrasena,
+    );
+    if (errorConfirmacion) {
+      mostrarError(errorConfirmacion);
     }
   }
 

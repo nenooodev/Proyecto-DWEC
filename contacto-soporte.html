@@ -23,10 +23,18 @@
             <span class="soporte__icono" aria-hidden="true">
               <img src="assets/icons/asistencia.svg" alt="" />
             </span>
-            <h2 class="soporte__titulo-tarjeta" id="contacto-titulo">Contacta con el equipo</h2>
+            <h2 class="soporte__titulo-tarjeta" id="contacto-titulo">
+              Contacta con el equipo
+            </h2>
           </div>
 
-          <form class="soporte__formulario" action="#" method="post">
+          <form
+            class="soporte__formulario"
+            action="#"
+            method="post"
+            id="formulario-contacto"
+            novalidate
+          >
             <div class="campo">
               <label class="campo__etiqueta" for="nombre">Nombre completo</label>
               <input
@@ -36,8 +44,12 @@
                 type="text"
                 placeholder="Marta Sánchez"
                 autocomplete="name"
+                maxlength="80"
+                aria-describedby="error-nombre"
+                aria-invalid="false"
                 required
               />
+              <p class="campo__error" id="error-nombre" hidden></p>
             </div>
 
             <div class="campo">
@@ -49,8 +61,12 @@
                 type="email"
                 placeholder="marta@correo.com"
                 autocomplete="email"
+                maxlength="254"
+                aria-describedby="error-correo"
+                aria-invalid="false"
                 required
               />
+              <p class="campo__error" id="error-correo" hidden></p>
             </div>
 
             <div class="campo">
@@ -61,11 +77,16 @@
                 name="mensaje"
                 rows="3"
                 placeholder="Cuéntanos en qué podemos ayudarte..."
+                maxlength="500"
+                aria-describedby="error-mensaje"
+                aria-invalid="false"
                 required
               ></textarea>
+              <p class="campo__error" id="error-mensaje" hidden></p>
             </div>
 
             <button class="boton boton--primario" type="submit">Enviar mensaje</button>
+            <p class="aviso-exito" id="contacto-exito" role="status" hidden></p>
           </form>
         </section>
 
@@ -75,5 +96,7 @@
         </a>
       </main>
     </div>
+
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

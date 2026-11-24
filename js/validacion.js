@@ -13,40 +13,76 @@ const obtenerAnios = (valor) => {
   return anios;
 };
 
-export const validarUsuario = (valor) =>
-  valor.length >= 4 ? null : 'El usuario debe tener al menos 4 caracteres';
+const valorDe = (campo) => {
+  if (campo.type === 'password' || campo.type === 'date') {
+    return campo.value;
+  }
 
-export const validarContrasena = (valor) =>
-  valor.length >= 8 &&
-  [...valor].some((caracter) => /[A-ZÁÉÍÓÚÑ]/.test(caracter)) &&
-  [...valor].some((caracter) => /\d/.test(caracter))
+  return campo.value.trim();
+};
+
+export const validarUsuario = (campo) => {
+  if (campo.minLength <= 0) {
+    return null;
+  }
+
+  const valor = valorDe(campo);
+
+  return valor.length >= campo.minLength
     ? null
-    : 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un número';
+    : `El usuario debe tener al menos ${campo.minLength} caracteres`;
+};
 
-export const validarFecha = (valor) => {
+export const validarContrasena = (campo) => {
+  const valor = campo.value;
+  const cumpleLongitud = campo.minLength <= 0 || valor.length >= campo.minLength;
+  const cumpleMayuscula = [...valor].some((caracter) => /[A-ZÁÉÍÓÚÑ]/.test(caracter));
+  const cumpleNumero = [...valor].some((caracter) => /\d/.test(caracter));
+
+  if (cumpleLongitud && cumpleMayuscula && cumpleNumero) {
+    return null;
+  }
+
+  if (campo.minLength > 0) {
+    return `La contraseña debe tener al menos ${campo.minLength} caracteres, una mayúscula y un número`;
+  }
+
+  return 'La contraseña debe tener una mayúscula y un número';
+};
+
+/**
+ * Valida una fecha usando los límites `min` y `max` del propio campo. Si el
+ * campo no define alguno de ellos, esa comprobación no se aplica.
+ */
+export const validarFecha = (campo) => {
+  const valor = campo.value;
+
   if (!valor || Number.isNaN(new Date(valor).getTime())) {
     return 'Introduce una fecha válida';
   }
 
-  if (new Date(valor) > new Date()) {
-    return 'La fecha no puede ser futura';
+  const fecha = new Date(valor);
+
+  if (campo.max && fecha > new Date(campo.max)) {
+    return `Debes tener al menos ${obtenerAnios(campo.max)} años`;
   }
 
-  const anios = obtenerAnios(valor);
-  if (anios < 12 || anios > 120) {
-    return 'Debes tener entre 12 y 120 años';
+  if (campo.min && fecha < new Date(campo.min)) {
+    return `No puedes tener más de ${obtenerAnios(campo.min)} años`;
   }
 
   return null;
 };
 
-export const validarTelefono = (valor) =>
-  /^(?:\+34\s?)?[6789]\d{8}$/.test(valor.trim())
+export const validarTelefono = (campo) =>
+  /^(?:\+34\s?)?[6789]\d{8}$/.test(campo.value.trim())
     ? null
     : 'Introduce un teléfono válido de 9 dígitos';
 
-export const validarEmail = (valor) =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor.trim()) ? null : 'Introduce un email válido';
+export const validarEmail = (campo) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(campo.value.trim())
+    ? null
+    : 'Introduce un email válido';
 
-export const validarConfirmacion = (valor, valor2) =>
-  valor === valor2 ? null : 'Los valores no coinciden';
+export const validarConfirmacion = (campo, campoConfirmacion) =>
+  campo.value === campoConfirmacion.value ? null : 'Los valores no coinciden';

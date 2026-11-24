@@ -25,14 +25,23 @@
             <span class="usuarios__icono" aria-hidden="true">
               <img src="assets/icons/usuarios.svg" alt="" />
             </span>
-            <h2 class="usuarios__titulo-tarjeta" id="titulo-formulario-usuario">Nuevo usuario</h2>
+            <h2 class="usuarios__titulo-tarjeta" id="titulo-formulario-usuario">
+              Nuevo usuario
+            </h2>
           </div>
 
-          <form class="usuarios__formulario" action="#" method="post" id="formulario-usuario">
+          <form
+            class="usuarios__formulario"
+            action="#"
+            method="post"
+            id="formulario-usuario"
+          >
             <p class="aviso-error" id="usuario-error" role="alert" hidden></p>
 
             <div class="campo">
-              <label class="campo__etiqueta" for="usuario-nombre">Nombre de usuario</label>
+              <label class="campo__etiqueta" for="usuario-nombre"
+                >Nombre de usuario</label
+              >
               <input
                 class="campo__entrada"
                 id="usuario-nombre"
@@ -40,12 +49,16 @@
                 type="text"
                 placeholder="marta.sanchez"
                 autocomplete="username"
+                minlength="4"
+                maxlength="30"
                 required
               />
             </div>
 
             <div class="campo">
-              <label class="campo__etiqueta" for="usuario-correo">Correo electrónico</label>
+              <label class="campo__etiqueta" for="usuario-correo"
+                >Correo electrónico</label
+              >
               <input
                 class="campo__entrada"
                 id="usuario-correo"
@@ -53,6 +66,7 @@
                 type="email"
                 placeholder="marta@correo.com"
                 autocomplete="email"
+                maxlength="254"
                 required
               />
             </div>
@@ -68,12 +82,16 @@
                   type="password"
                   placeholder="Mínimo 8 caracteres, una mayúscula y un número"
                   autocomplete="new-password"
+                  minlength="8"
+                  maxlength="64"
                   required
                 />
               </div>
 
               <div class="campo">
-                <label class="campo__etiqueta" for="usuario-repetir-contrasena">Repite la contraseña</label>
+                <label class="campo__etiqueta" for="usuario-repetir-contrasena"
+                  >Repite la contraseña</label
+                >
                 <input
                   class="campo__entrada campo__entrada--icono"
                   id="usuario-repetir-contrasena"
@@ -81,18 +99,25 @@
                   type="password"
                   placeholder="Vuelve a escribir la contraseña"
                   autocomplete="new-password"
+                  minlength="8"
+                  maxlength="64"
                   required
                 />
               </div>
             </div>
 
             <div class="campo">
-              <label class="campo__etiqueta" for="usuario-fecha-nacimiento">Fecha de nacimiento</label>
+              <label class="campo__etiqueta" for="usuario-fecha-nacimiento"
+                >Fecha de nacimiento</label
+              >
+              <!-- Límites de edad (12-120 años): validarFecha los lee de aquí -->
               <input
                 class="campo__entrada"
                 id="usuario-fecha-nacimiento"
                 name="fecha_nacimiento"
                 type="date"
+                min="1906-11-24"
+                max="2014-11-24"
                 required
               />
             </div>
@@ -113,7 +138,9 @@
 
         <h2 class="usuarios__titulo-lista">Usuarios registrados</h2>
         <ul class="lista-usuarios" id="lista-usuarios"></ul>
-        <p class="usuarios__vacio" id="usuarios-vacio" hidden>No hay usuarios registrados todavía.</p>
+        <p class="usuarios__vacio" id="usuarios-vacio" hidden>
+          No hay usuarios registrados todavía.
+        </p>
       </main>
     </div>
 

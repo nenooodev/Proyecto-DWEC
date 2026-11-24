@@ -1772,6 +1772,13 @@ input:focus-visible {
   line-height: 20px;
 }
 
+.campo__error {
+  color: var(--color-alerta);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
 /* Contenedor relativo para poder anclar el icono dentro del campo */
 .campo__caja {
   position: relative;
@@ -1787,6 +1794,11 @@ input:focus-visible {
   color: var(--color-tinta);
   font-size: 16px;
   line-height: 24px;
+}
+
+.campo__entrada[aria-invalid='true'] {
+  border-color: var(--color-alerta);
+  background: var(--color-alerta-suave);
 }
 
 .campo__entrada::placeholder {
@@ -2169,6 +2181,14 @@ input:focus-visible {
 /* Mensaje de error reutilizable en formularios */
 .aviso-error {
   color: var(--color-alerta);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/* Confirmación de envío correcto */
+.aviso-exito {
+  color: var(--color-verde-oscuro);
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
