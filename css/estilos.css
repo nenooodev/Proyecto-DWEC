@@ -1574,6 +1574,14 @@ input:focus-visible {
   padding: 16px;
 }
 
+/* Variante del modal para editar un mensaje de contacto */
+.modal__caja--contacto {
+  max-width: 340px;
+  max-height: 100%;
+  gap: 16px;
+  padding: 16px;
+}
+
 .modal__cabecera {
   display: flex;
   align-items: flex-start;
@@ -2295,6 +2303,14 @@ input:focus-visible {
   font-size: 14px;
   line-height: 20px;
   overflow-wrap: anywhere;
+}
+
+.contacto-ficha__acciones {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .contactos__vacio {
