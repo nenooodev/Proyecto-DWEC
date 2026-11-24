@@ -1,4 +1,4 @@
-const leer = (coleccion) => {
+export const leer = (coleccion) => {
   try {
     return JSON.parse(localStorage.getItem(coleccion)) ?? [];
   } catch {

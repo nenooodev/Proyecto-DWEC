@@ -1,4 +1,11 @@
-import { crear, obtenerTodos, actualizar, borrar, obtenerPorId } from './almacen.js';
+import {
+  crear,
+  leer,
+  obtenerTodos,
+  actualizar,
+  borrar,
+  obtenerPorId,
+} from './almacen.js';
 import {
   esCampoValidable,
   aplicarEstado,
@@ -19,10 +26,10 @@ export const formatearFecha = (valor) => {
     : fecha.toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' });
 };
 
-export const crearFichaContacto = (contacto) => {
+export const crearFichaContacto = (contacto, idx) => {
   const item = document.createElement('li');
   item.className = 'contacto-ficha';
-  item.dataset.id = contacto.id;
+  item.dataset.id = idx + 1;
 
   const cabecera = document.createElement('div');
   cabecera.className = 'contacto-ficha__cabecera';
@@ -88,11 +95,17 @@ export const cargarContactos = () => {
 
   if (!lista) return;
 
+  while (lista.firstChild) {
+    lista.firstChild.remove();
+  }
+
   const contactos = obtenerTodos(COLECCION_CONTACTOS).slice().reverse();
   const vacio = document.querySelector('#contactos-vacio');
   const fragmento = document.createDocumentFragment();
 
-  contactos.forEach((contacto) => fragmento.append(crearFichaContacto(contacto)));
+  contactos.forEach((contacto, idx) =>
+    fragmento.append(crearFichaContacto(contacto, idx)),
+  );
   lista.append(fragmento);
 
   if (vacio) {
@@ -286,7 +299,7 @@ export const configurarContacto = (formulario) => {
     const datos = new FormData(formulario);
 
     crear(COLECCION_CONTACTOS, {
-      id: Date.now(),
+      id: leer(COLECCION_CONTACTOS).length + 1,
       nombre: datos.get('nombre').trim(),
       correo: datos.get('correo').trim().toLowerCase(),
       telefono: datos.get('telefono').trim() || null,
