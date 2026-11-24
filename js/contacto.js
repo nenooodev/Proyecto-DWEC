@@ -18,6 +18,38 @@ import { validarTelefono } from './validacion.js';
 
 export const COLECCION_CONTACTOS = 'contactos';
 
+const COOKIE_NOMBRE_CAMPO = 'contacto_nombre';
+const COOKIE_CORREO_CAMPO = 'contacto_correo';
+const SEGUNDOS_DE_CADUCIDAD = 7 * 24 * 60 * 60;
+
+const leerCookie = (nombre) => {
+  const cookie = document.cookie
+    .split('; ')
+    .find((parte) => parte.startsWith(`${nombre}=`));
+
+  return cookie ? decodeURIComponent(cookie.split('=').slice(1).join('=')) : '';
+};
+
+const guardarRecordatorio = (nombre, correo) => {
+  const caducidad = new Date(Date.now() + SEGUNDOS_DE_CADUCIDAD * 1000).toUTCString();
+
+  document.cookie = `${COOKIE_NOMBRE_CAMPO}=${encodeURIComponent(nombre)}; expires=${caducidad}; path=/`;
+  document.cookie = `${COOKIE_CORREO_CAMPO}=${encodeURIComponent(correo)}; expires=${caducidad}; path=/`;
+};
+
+const aplicarRecordatorio = (formulario) => {
+  const nombre = leerCookie(COOKIE_NOMBRE_CAMPO);
+  const correo = leerCookie(COOKIE_CORREO_CAMPO);
+
+  if (nombre) {
+    formulario.elements.nombre.value = nombre;
+  }
+
+  if (correo) {
+    formulario.elements.correo.value = correo;
+  }
+};
+
 export const formatearFecha = (valor) => {
   const fecha = new Date(valor);
 
@@ -308,6 +340,11 @@ export const configurarContacto = (formulario) => {
       fecha: new Date().toISOString(),
     });
 
+    guardarRecordatorio(
+      datos.get('nombre').trim(),
+      datos.get('correo').trim().toLowerCase(),
+    );
+
     formulario.reset();
     actualizarTelefonoObligatorio();
     actualizarContador();
@@ -320,4 +357,6 @@ export const configurarContacto = (formulario) => {
   formulario.addEventListener('input', () => {
     mensajeExito.hidden = true;
   });
+
+  aplicarRecordatorio(formulario);
 };
