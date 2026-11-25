@@ -1838,6 +1838,13 @@ input:focus-visible {
   resize: vertical;
 }
 
+/* Modificador: selector desplegable */
+.campo__entrada--select {
+  padding-right: 40px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 /* Modificador: reserva espacio a la derecha para el icono anclado */
 .campo__entrada--icono {
   padding-right: 44px;

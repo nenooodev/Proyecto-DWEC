@@ -98,6 +98,23 @@
             </div>
 
             <div class="campo">
+              <label class="campo__etiqueta" for="tipo-motivo">Motivo del mensaje</label>
+              <select
+                class="campo__entrada campo__entrada--select"
+                id="tipo-motivo"
+                name="tipo_motivo"
+                aria-describedby="error-tipo-motivo"
+                aria-invalid="false"
+                required
+              >
+                <option value="">Selecciona un motivo</option>
+                <option value="Reportar problema app">Reportar problema app</option>
+                <option value="Propuesta de mejora">Propuesta de mejora</option>
+              </select>
+              <p class="campo__error" id="error-tipo-motivo" hidden></p>
+            </div>
+
+            <div class="campo">
               <div class="campo__cabecera">
                 <label class="campo__etiqueta" for="mensaje">Motivo de contacto</label>
                 <span class="campo__contador" id="contador-mensaje">0/500</span>

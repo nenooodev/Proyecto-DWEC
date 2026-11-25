@@ -208,6 +208,7 @@ export const configurarContacto = (formulario) => {
       correo: datos.get('correo').trim().toLowerCase(),
       telefono: datos.get('telefono').trim() || null,
       prefiereLlamada: prefieroLlamada.checked,
+      tipoMotivo: datos.get('tipo_motivo').trim(),
       motivo: datos.get('mensaje').trim(),
       fecha: new Date().toISOString(),
     });
