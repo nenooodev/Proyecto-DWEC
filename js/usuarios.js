@@ -7,7 +7,13 @@
  */
 
 import { obtenerTodos, obtenerPorId, crear, actualizar, borrar } from './almacen.js';
-import { esCampoValidable, aplicarEstado, validarYMostrar } from './formularios.js';
+import {
+  esCampoValidable,
+  aplicarEstado,
+  validarYMostrar,
+  validarTocados,
+  limpiar,
+} from './formularios.js';
 const COLECCION = 'usuarios';
 
 const formulario = document.querySelector('#formulario-usuario');
@@ -17,6 +23,15 @@ const tituloTarjeta = document.querySelector('#titulo-formulario-usuario');
 const botonEnviar = document.querySelector('#boton-enviar-usuario');
 const botonCancelar = document.querySelector('#boton-cancelar-edicion');
 const camposContrasena = document.querySelector('#campos-contrasena');
+
+const camposFormulario = [...formulario.elements].filter(esCampoValidable);
+
+// Campos que se validan en cada momento: al editar, la contraseña está oculta
+// y no debe intervenir en la validación.
+const camposActivos = () =>
+  camposFormulario.filter(
+    (campo) => !camposContrasena.contains(campo) || !camposContrasena.hidden,
+  );
 
 // ---------------------------------------------------------------------------
 // Estado de edición: null = creando, id numérico = editando ese usuario.
@@ -96,47 +111,48 @@ function aplicarModoEdicion() {
 
 function resetearFormulario() {
   idEnEdicion = null;
-  const campos = [...formulario.elements].filter(esCampoValidable);
-  campos.forEach((campo) => aplicarEstado(campo, null));
+  limpiar(camposFormulario);
   formulario.reset();
   aplicarModoEdicion();
 }
 
+// Validación al salir del campo (blur) y al escribir, pero solo una vez que el
+// campo ha sido tocado, igual que en el formulario de acceso.
+camposFormulario.forEach((campo) => {
+  campo.dataset.tocado = 'false';
+  aplicarEstado(campo, null);
+
+  campo.addEventListener('blur', () => {
+    campo.dataset.tocado = 'true';
+    validarTocados(camposActivos());
+  });
+
+  campo.addEventListener('input', () => {
+    if (campo.dataset.tocado === 'true') {
+      validarTocados(camposActivos());
+    }
+  });
+});
+
 formulario.addEventListener('submit', (evento) => {
   evento.preventDefault();
+
+  const campos = camposActivos();
+  campos.forEach((campo) => {
+    campo.dataset.tocado = 'true';
+  });
+
+  const errores = campos.filter((campo) => validarYMostrar(campo) !== null);
+
+  if (errores.length > 0) {
+    errores[0].focus();
+    return;
+  }
 
   const datos = new FormData(formulario);
   const usuario = datos.get('usuario').trim();
   const correo = datos.get('correo').trim().toLowerCase();
   const fechaNacimiento = datos.get('fecha_nacimiento');
-
-  const campos = [...formulario.elements].filter(esCampoValidable);
-  campos.forEach((campo) => aplicarEstado(campo, null));
-
-  const errorUsuario = validarYMostrar(formulario.elements.usuario);
-  const errorCorreo = validarYMostrar(formulario.elements.correo);
-  const errorFecha = validarYMostrar(formulario.elements.fecha_nacimiento);
-  const errorContrasena =
-    idEnEdicion === null ? validarYMostrar(formulario.elements.contrasena) : null;
-  const errorConfirmacion =
-    idEnEdicion === null ? validarYMostrar(formulario.elements.repetir_contrasena) : null;
-
-  if (errorUsuario) {
-    formulario.elements.usuario.focus();
-    return;
-  } else if (errorCorreo) {
-    formulario.elements.correo.focus();
-    return;
-  } else if (errorContrasena) {
-    formulario.elements.contrasena.focus();
-    return;
-  } else if (errorFecha) {
-    formulario.elements.fecha_nacimiento.focus();
-    return;
-  } else if (errorConfirmacion) {
-    formulario.elements.repetir_contrasena.focus;
-    return;
-  }
 
   // Duplicados por nombre o correo (ignorando al usuario que se está editando).
   const duplicado = obtenerTodos(COLECCION).some(
@@ -183,13 +199,11 @@ lista.addEventListener('click', (evento) => {
 
   if (boton.dataset.accion === 'editar') {
     idEnEdicion = id;
+    limpiar(camposFormulario);
     formulario.querySelector('[name="usuario"]').value = usuario.usuario;
     formulario.querySelector('[name="correo"]').value = usuario.correo;
     formulario.querySelector('[name="fecha_nacimiento"]').value =
       usuario.fechaNacimiento ?? '';
-    [...formulario.elements]
-      .filter(esCampoValidable)
-      .forEach((campo) => aplicarEstado(campo, null));
     aplicarModoEdicion();
     formulario.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
