@@ -50,6 +50,8 @@
                 autocomplete="username"
                 minlength="4"
                 maxlength="30"
+                aria-describedby="error-usuario-nombre"
+                aria-invalid="false"
                 required
               />
               <p class="campo__error" id="error-usuario-nombre" hidden></p>
@@ -67,6 +69,8 @@
                 placeholder="marta@correo.com"
                 autocomplete="email"
                 maxlength="254"
+                aria-describedby="error-usuario-correo"
+                aria-invalid="false"
                 required
               />
               <p class="campo__error" id="error-usuario-correo" hidden></p>
@@ -85,6 +89,8 @@
                   autocomplete="new-password"
                   minlength="8"
                   maxlength="64"
+                  aria-describedby="error-usuario-contrasena"
+                  aria-invalid="false"
                   required
                 />
                 <p class="campo__error" id="error-usuario-contrasena" hidden></p>
@@ -103,6 +109,8 @@
                   autocomplete="new-password"
                   minlength="8"
                   maxlength="64"
+                  aria-describedby="error-usuario-repetir_contrasena"
+                  aria-invalid="false"
                   required
                 />
                 <p class="campo__error" id="error-usuario-repetir_contrasena" hidden></p>
@@ -121,6 +129,8 @@
                 type="date"
                 min="1906-11-24"
                 max="2014-11-24"
+                aria-describedby="error-usuario-fecha-nacimiento"
+                aria-invalid="false"
                 required
               />
               <p class="campo__error" id="error-usuario-fecha-nacimiento" hidden></p>
