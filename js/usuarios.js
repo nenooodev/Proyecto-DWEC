@@ -8,14 +8,6 @@
 
 import { obtenerTodos, obtenerPorId, crear, actualizar, borrar } from './almacen.js';
 import { esCampoValidable, aplicarEstado, validarYMostrar } from './formularios.js';
-import {
-  validarUsuario,
-  validarContrasena,
-  validarFecha,
-  validarEmail,
-  validarConfirmacion,
-} from './validacion.js';
-
 const COLECCION = 'usuarios';
 
 const formulario = document.querySelector('#formulario-usuario');
@@ -165,8 +157,8 @@ formulario.addEventListener('submit', (evento) => {
   if (idEnEdicion === null) {
     crear(COLECCION, { id: Date.now(), usuario, correo, fechaNacimiento });
   } else {
-    const actual = obtenerPorId(COLECCION, idEnEdicion);
-    actualizar(COLECCION, idEnEdicion, { ...actual, usuario, correo, fechaNacimiento });
+    // No incluimos `condiciones`: al actualizar se conserva el valor guardado.
+    actualizar(COLECCION, idEnEdicion, { usuario, correo, fechaNacimiento });
   }
 
   resetearFormulario();

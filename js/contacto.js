@@ -14,7 +14,6 @@ import {
   limpiar,
   configurarContador,
 } from './formularios.js';
-import { validarTelefono } from './validacion.js';
 
 export const COLECCION_CONTACTOS = 'contactos';
 

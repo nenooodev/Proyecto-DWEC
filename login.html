@@ -162,6 +162,22 @@
               >
             </div>
 
+            <div class="login__recordar">
+              <input
+                class="login__casilla"
+                id="aceptar-condiciones"
+                name="condiciones"
+                type="checkbox"
+                aria-describedby="error-aceptar-condiciones"
+                aria-invalid="false"
+                required
+              />
+              <label class="login__recordar-texto" for="aceptar-condiciones"
+                >Acepto las condiciones de la aplicación</label
+              >
+            </div>
+            <p class="campo__error" id="error-aceptar-condiciones" hidden></p>
+
             <button class="boton boton--primario" type="submit">Inicia sesión</button>
           </form>
         </section>

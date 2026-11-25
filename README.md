@@ -26,7 +26,7 @@
 
 | Pantalla  | Datos                                                                                                                                                                 |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Login**    | Formulario para introducir credenciales iPasen/iSéneca (usuario y contraseña); rol detectado tras autenticar (alumno o PTIS) y redirección al inicio correspondiente. Al enviarlo, el usuario queda registrado en `localStorage` (la contraseña nunca se guarda). |
+| **Login**    | Formulario para introducir credenciales iPasen/iSéneca (usuario y contraseña); rol detectado tras autenticar (alumno o PTIS) y redirección al inicio correspondiente. Al enviarlo, el usuario queda registrado en `localStorage` (la contraseña nunca se guarda). Incluye un checkbox obligatorio de aceptación de condiciones, que se guarda como booleano (`condiciones`) junto al usuario en `localStorage` y no se muestra en la gestión de usuarios. |
 | **Usuarios** | Listado de usuarios registrados con acciones de editar y eliminar; un único formulario para crear y editar (al editar, se rellena con los datos del usuario); la contraseña solo se pide al crear. |
 
 ### Sitemap -- Alumno

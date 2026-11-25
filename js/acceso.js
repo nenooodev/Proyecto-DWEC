@@ -29,6 +29,8 @@ const toggleContrasena = (e) => {
 export const configurarAcceso = (formulario) => {
   const mensajeError = document.querySelector('#acceso-error');
   const campos = [...formulario.elements].filter(esCampoValidable);
+  const casillaCondiciones = formulario.elements.condiciones;
+  const errorCondiciones = document.querySelector('#error-aceptar-condiciones');
 
   const mostrarError = (mensaje) => {
     mensajeError.textContent = mensaje;
@@ -39,6 +41,20 @@ export const configurarAcceso = (formulario) => {
     mensajeError.textContent = '';
     mensajeError.hidden = true;
   };
+
+  const mostrarErrorCondiciones = (mensaje) => {
+    errorCondiciones.textContent = mensaje;
+    errorCondiciones.hidden = false;
+    casillaCondiciones.setAttribute('aria-invalid', 'true');
+  };
+
+  const ocultarErrorCondiciones = () => {
+    errorCondiciones.textContent = '';
+    errorCondiciones.hidden = true;
+    casillaCondiciones.setAttribute('aria-invalid', 'false');
+  };
+
+  casillaCondiciones.addEventListener('change', ocultarErrorCondiciones);
 
   campos.forEach((campo) => {
     campo.dataset.tocado = 'false';
@@ -70,6 +86,12 @@ export const configurarAcceso = (formulario) => {
       return;
     }
 
+    if (!casillaCondiciones.checked) {
+      mostrarErrorCondiciones('Debes aceptar las condiciones de la aplicación');
+      casillaCondiciones.focus();
+      return;
+    }
+
     const datos = new FormData(formulario);
     const usuario = datos.get('usuario').trim();
     const correo = datos.get('correo').trim().toLowerCase();
@@ -95,6 +117,7 @@ export const configurarAcceso = (formulario) => {
       usuario,
       correo,
       fechaNacimiento,
+      condiciones: true,
     });
 
     limpiar(campos);
