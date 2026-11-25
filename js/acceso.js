@@ -17,6 +17,15 @@ import {
 /**
  * Configuración del formulario de acceso (login).
  */
+
+const toggleContrasena = (e) => {
+  if (e.target.closest('.campo__boton-ojo')) {
+    const ojo = e.target.closest('.campo__boton-ojo');
+    const input = ojo.parentElement.querySelector('input');
+    input.type === 'text' ? (input.type = 'password') : (input.type = 'text');
+  }
+};
+
 export const configurarAcceso = (formulario) => {
   const mensajeError = document.querySelector('#acceso-error');
   const campos = [...formulario.elements].filter(esCampoValidable);
@@ -94,4 +103,5 @@ export const configurarAcceso = (formulario) => {
   });
 
   formulario.addEventListener('input', ocultarError);
+  document.addEventListener('click', toggleContrasena);
 };
