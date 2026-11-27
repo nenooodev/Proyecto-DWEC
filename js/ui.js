@@ -6,6 +6,16 @@ const obtenerIniciales = (nombreCompleto) => {
   return `${nombre[0]}${primerApellido[0]}`.toUpperCase();
 };
 
+const cargarResumenPTIS = () => {
+  const resumen = document.querySelector('.centro__resumen');
+  if (PTIS.length === 0) {
+    resumen.textContent = 'No hay PTIS';
+  } else {
+    const disponibles = PTIS.filter((it) => it.disponibilidad === true).length;
+    resumen.textContent = `${PTIS.length} profesionales - ${disponibles} en el centro`;
+  }
+};
+
 const crearSolicitudUrgente = (urgente) => {
   const enlace = document.createElement('a');
   enlace.className = 'solicitud-urgente';
@@ -177,11 +187,11 @@ const crearFichaPtis = (ptis) => {
   return item;
 };
 
-const cargarPtis = () => {
+const cargarPtis = (PTIS) => {
   const lista = document.querySelector('.lista-ptis');
 
   if (!lista) return;
-
+  cargarResumenPTIS();
   const fragmento = document.createDocumentFragment();
 
   PTIS.forEach((ptis) => {
@@ -189,6 +199,7 @@ const cargarPtis = () => {
   });
 
   lista.append(fragmento);
+  
 };
 
 const ID_TITULO_HORARIO = 'titulo-horario';
@@ -326,7 +337,7 @@ const mostrarHorario = (ficha) => {
 
 cargarSolicitudesUrgentes();
 cargarSolicitudes();
-cargarPtis();
+cargarPtis(PTIS);
 
 document.addEventListener('click', (e) => {
   if (e.target.closest('[data-accion="cerrar"]')) {
@@ -340,3 +351,9 @@ document.addEventListener('click', (e) => {
 
   mostrarHorario(ficha);
 });
+
+const buscador = document.querySelector(".buscador__campo")
+buscador.addEventListener("input", (e) => {
+  const valor = e.target.value
+  cargarPtis(PTIS.filter((it) => it.nombre.startsWith(valor)))
+})

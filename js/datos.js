@@ -3,7 +3,7 @@ export const PTIS = [
     id: 1,
     nombre: 'Alex Gómez Berna',
     foto: 'http://imagen.png',
-    disponibilidad: true,
+    disponibilidad: false,
     horario: {
       Lunes: {
         '8:00': 'Aula 1ºA',
